@@ -1,5 +1,7 @@
 # A hierarchical Bayesian framework for understanding the spatiotemporal dynamics of the intestinal epithelium
-All of the files, code and data associated with the manuscript 'A hierarchical Bayesian framework for understanding the spatiotemporal dynamics of the intestinal epithelium'. The manuscript can found here: http://biorxiv.org/content/early/2016/08/31/072561
+All of the files, code and data associated with the manuscript 'A hierarchical Bayesian framework for understanding the spatiotemporal dynamics of the intestinal epithelium' by Oliver J Maclaren (me), Aimee Parker, Carmen Pin, Simon R Carding, Alastair JM Watson, Alexander G Fletcher, Helen M Byrne, Philip K Maini.
+
+The full manuscript, author information and copyright information can found here: http://biorxiv.org/content/early/2016/08/31/072561. (The copyright holder for this preprint is the author/funder. It is made available under a CC-BY-NC-ND 4.0 International license.)
 
 I need to tidy some of this up a little (or a lot!), so let me know if you would like to re-use anything and need help.
 
