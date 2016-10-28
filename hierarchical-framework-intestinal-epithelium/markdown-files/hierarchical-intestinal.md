@@ -7,6 +7,7 @@ HTML comment block.
 header-includes:
 - \usepackage{unicode-math}
 - \usepackage{fncylab}
+- \usepackage[right]{lineno}
 
 title: "A hierarchical Bayesian framework for understanding the spatiotemporal dynamics of the intestinal epithelium"
 abstract: 
@@ -36,6 +37,7 @@ Our work addresses two key challenges, one biological and one methodological. Fi
 #Author Summary
 The intestinal epithelium serves as an important model system for studying the dynamics and regulation of multicellular populations. It is characterised by rapid rates of self-renewal and repair; failure of the regulation of these processes is thought to explain, in part, why many tumours occur in the intestinal and similar epithelial tissues. These features have led to a large amount of work on estimating rate parameters in the intestine. There still remain, however, large gaps between the raw data collected, the experimental interpretation of these data and speculative mechanistic models for underlying processes. In our view hierarchical statistical modelling provides an ideal - but currently underutilised - method to begin to bridge these gaps. This approach makes essential use of the distinction between 'measurement', 'process' and 'parameter' models, giving an explicit framework for combining experimental data and mechanistic modelling in the presence of multiple sources of uncertainty. As we illustrate, the hierarchical approach also provides a suitable framework for addressing other methodological questions of broader interest in systems biology: how to  systematically relate discrete and continuous mechanistic models; how to formally interpret and visualise statistical evidence; and how to represent the notion of causal mechanism as invariance under intervention.
 
+\linenumbers
 
 # Introduction
 ## Motivation 
@@ -466,6 +468,8 @@ The main results established using the above framework were
 
 # Acknowledgements 
 This work was funded by the BBSRC-UK, project numbers BB/K018256/1, BB/K017578/1, BB/K017144/1 and BB/J004529/1 and the EPSRC-UK, project number EP/I017909/1.
+
+\nolinenumbers
 
 # References
 
