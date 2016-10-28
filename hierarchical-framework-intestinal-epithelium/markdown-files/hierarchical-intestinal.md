@@ -11,7 +11,7 @@ header-includes:
 
 title: "A hierarchical Bayesian framework for understanding the spatiotemporal dynamics of the intestinal epithelium"
 abstract: 
-author: O.J. Maclaren$^1$*, A. Parker$^2$, C. Pin$^2$, S.R. Carding$^{2,3}$, A.J.M. Watson$^{2,3}$, A.G. Fletcher$^4$, H.M. Byrne$^6$ and P.K. Maini$^6$
+author: O.J. Maclaren$^1$*, A. Parker$^2$, C. Pin$^2$, S.R. Carding$^{2,3}$, A.J.M. Watson$^{2,3}$, A.G. Fletcher$^{4,5}$, H.M. Byrne$^6$ and P.K. Maini$^6$
 bibliography: "../bibtex-files/crypt-villus-refs.bib"
 csl: "../csl/springer-vancouver.csl"
 
