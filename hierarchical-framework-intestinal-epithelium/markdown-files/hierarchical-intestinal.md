@@ -118,9 +118,7 @@ where $\mathbf{k}$ are the cellular proliferation rates (these are discussed bel
 Notably, a 'causal' (structural invariance) assumption [@Pearl2009-qh; @Pearl2009-jp; @Dawid1979-gu; @Dawid2002-ry; @Dawid2010-ab; @Dawid2010-yg; @Woodward2003-oz; @Woodward1997-dk; @Spirtes2000-zd] is made by assuming that the experimental treatment condition affects the process parameters $\mathbf{k}$ but not the structure of the measurement or process models. In particular, while the experimental treatment ultimately affects $\mathbf{y}$, in our model it does so *via* its effect on $\mathbf{k}$ and $\mathbf{k}$'s subsequent effect on $\mathbf{L}$. This leads to the conditional independence structure mentioned. In terms of so-called directed acyclic graphs (DAGs), used in the causal modelling literature referenced above, we assumed
 
 $$
-\begin{tikzcd}
-E \arrow[r] & \mathbf{k} \arrow[r] & \mathbf{L} \arrow[r] & \mathbf{y}. 
-\end{tikzcd}
+YYY
 $$ {#eq:dag}
 
 Another way of stating this is that knowledge of $\mathbf{L}$ (and $\mathbf{n}$) is sufficient to determine $\mathbf{y}$ regardless of how $\mathbf{L}$ was brought about, but that to know $\mathbf{L}$ we (ultimately) have to know which experiment was carried out. Note that in general we suppressed, in our notation, the explicit conditioning on sample size $\mathbf{n}$, since it was taken to be fixed and known, as well as the conditioning on $E$ (keeping in mind that it was assumed to only affect $\mathbf{k}$).
