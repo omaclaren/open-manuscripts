@@ -1,0 +1,2222 @@
+\documentclass[10pt,letterpaper]{article}
+%DIF LATEXDIFF DIFFERENCE FILE
+%DIF DEL orig.tex      Fri Jun 16 09:36:46 2017
+%DIF ADD revised.tex   Fri Jun 16 09:36:48 2017
+
+\usepackage[top=0.85in,left=2.75in,footskip=0.75in]{geometry}
+\usepackage{changepage}
+
+% OLIVER: The next line should be uncommented, but generates an error at present
+%\usepackage[utf8]{inputenc}
+
+\usepackage{textcomp}
+\usepackage{marvosym}
+\usepackage{fixltx2e}
+\usepackage{cite}
+\usepackage{nameref}
+\usepackage[right]{lineno}
+\usepackage{rotating}
+\usepackage[numbers]{natbib}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+
+% OLIVER: The next two lines should be uncommented, but generate an error at present
+%\usepackage{microtype}
+%\DisableLigatures[f]{encoding = *, family = * }
+
+% OLIVER: Remove comment for double spacing
+\usepackage{setspace} 
+\doublespacing
+
+\raggedright
+\setlength{\parindent}{0.5cm}
+\textwidth 5.25in 
+\textheight 8.75in
+
+\usepackage[aboveskip=1pt,labelfont=bf,labelsep=period,justification=raggedright,singlelinecheck=off]{caption}
+
+\bibliographystyle{plos2015}
+
+\makeatletter
+\renewcommand{\@biblabel}[1]{\quad#1.}
+\makeatother
+
+\date{}
+
+\setlength{\bibsep}{0.0pt}
+
+% Header and Footer with logo
+\usepackage{lastpage,fancyhdr,graphicx}
+\usepackage{epstopdf}
+\pagestyle{myheadings}
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{\includegraphics[width=2.0in]{PLOS-submission.pdf}}
+\rfoot{\thepage/\pageref{LastPage}}
+\renewcommand{\footrule}{\hrule height 2pt \vspace{2mm}}
+\fancyheadoffset[L]{2.25in}
+\fancyfootoffset[L]{2.25in}
+\lfoot{\sf PLOS}
+
+%% Include all macros below
+
+\newcommand{\lorem}{{\bf LOREM}}
+\newcommand{\ipsum}{{\bf IPSUM}}
+
+% OJM - pandoc issue
+\def\tightlist{}
+
+%% END MACROS SECTION
+
+
+
+% use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[utf8]{inputenc}
+\else % if luatex or xelatex
+  \ifxetex
+    \usepackage{mathspec}
+    \usepackage{xltxtra,xunicode}
+  \else
+    \usepackage{fontspec}
+  \fi
+  \defaultfontfeatures{Mapping=tex-text,Scale=MatchLowercase}
+  \newcommand{\euro}{€}
+\fi
+% use microtype if available
+\IfFileExists{microtype.sty}{\usepackage{microtype}}{}
+
+\usepackage{graphicx}
+% Redefine \includegraphics so that, unless explicit options are
+% given, the image width will not exceed the width of the page.
+% Images get their normal width if they fit onto the page, but
+% are scaled down if they would overflow the margins.
+\makeatletter
+\def\ScaleIfNeeded{%
+  \ifdim\Gin@nat@width>\linewidth
+    \linewidth
+  \else
+    \Gin@nat@width
+  \fi
+}
+\makeatother
+\let\Oldincludegraphics\includegraphics
+{%
+ \catcode`\@=11\relax%
+ \gdef\includegraphics{\@ifnextchar[{\Oldincludegraphics}{\Oldincludegraphics[width=\ScaleIfNeeded]}}%
+}%
+\ifxetex
+  \usepackage[setpagesize=false, % page size defined by xetex
+              unicode=false, % unicode breaks when used with xetex
+              xetex]{hyperref}
+\else
+  \usepackage[unicode=true]{hyperref}
+\fi
+\hypersetup{breaklinks=true,
+            bookmarks=true,
+            pdfauthor={O.J. Maclaren\^{}1*, A. Parker\^{}2, C. Pin\^{}2, S.R. Carding\^{}\{2,3\}, A.J.M. Watson\^{}\{2,3\}, A.G. Fletcher\^{}\{4,5\}, H.M. Byrne\^{}6 and P.K. Maini\^{}6},
+%DIF 119c119
+%DIF <             pdftitle={A hierarchical Bayesian framework for understanding the spatiotemporal dynamics of the intestinal epithelium},
+%DIF -------
+            pdftitle={A hierarchical Bayesian model for understanding the spatiotemporal dynamics of the intestinal epithelium}, %DIF > 
+%DIF -------
+            colorlinks=true,
+            citecolor=blue,
+            urlcolor=blue,
+            linkcolor=magenta,
+            pdfborder={0 0 0}}
+\urlstyle{same}  % don't use monospace font for urls
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+\setlength{\emergencystretch}{3em}  % prevent overfull lines
+\setcounter{secnumdepth}{0}
+\usepackage{unicode-math}
+\usepackage{fncylab}
+\usepackage[right]{lineno}
+%DIF 133a133-134
+\usepackage{tikz-cd} %DIF > 
+\usepackage{textcomp} %DIF > 
+%DIF -------
+
+%DIF 134c136
+%DIF < \title{A hierarchical Bayesian framework for understanding the spatiotemporal
+%DIF -------
+\title{A hierarchical Bayesian model for understanding the spatiotemporal %DIF > 
+%DIF -------
+dynamics of the intestinal epithelium}
+\author{O.J. Maclaren\(^1\)*, A. Parker\(^2\), C. Pin\(^2\), S.R.
+Carding\(^{2,3}\), A.J.M. Watson\(^{2,3}\), A.G. Fletcher\(^{4,5}\),
+H.M. Byrne\(^6\) and P.K. Maini\(^6\)}
+\date{}
+%DIF PREAMBLE EXTENSION ADDED BY LATEXDIFF
+%DIF CFONT PREAMBLE %DIF PREAMBLE
+\RequirePackage{color}\definecolor{RED}{rgb}{1,0,0}\definecolor{BLUE}{rgb}{0,0,1} %DIF PREAMBLE
+\providecommand{\DIFaddtex}[1]{{\protect\color{blue} \sf #1}} %DIF PREAMBLE
+\providecommand{\DIFdeltex}[1]{{\protect\color{red} \scriptsize #1}} %DIF PREAMBLE
+%DIF SAFE PREAMBLE %DIF PREAMBLE
+\providecommand{\DIFaddbegin}{} %DIF PREAMBLE
+\providecommand{\DIFaddend}{} %DIF PREAMBLE
+\providecommand{\DIFdelbegin}{} %DIF PREAMBLE
+\providecommand{\DIFdelend}{} %DIF PREAMBLE
+%DIF FLOATSAFE PREAMBLE %DIF PREAMBLE
+\providecommand{\DIFaddFL}[1]{\DIFadd{#1}} %DIF PREAMBLE
+\providecommand{\DIFdelFL}[1]{\DIFdel{#1}} %DIF PREAMBLE
+\providecommand{\DIFaddbeginFL}{} %DIF PREAMBLE
+\providecommand{\DIFaddendFL}{} %DIF PREAMBLE
+\providecommand{\DIFdelbeginFL}{} %DIF PREAMBLE
+\providecommand{\DIFdelendFL}{} %DIF PREAMBLE
+%DIF END PREAMBLE EXTENSION ADDED BY LATEXDIFF
+%DIF PREAMBLE EXTENSION ADDED BY LATEXDIFF
+%DIF HYPERREF PREAMBLE %DIF PREAMBLE
+\providecommand{\DIFadd}[1]{\texorpdfstring{\DIFaddtex{#1}}{#1}} %DIF PREAMBLE
+\providecommand{\DIFdel}[1]{\texorpdfstring{\DIFdeltex{#1}}{}} %DIF PREAMBLE
+%DIF END PREAMBLE EXTENSION ADDED BY LATEXDIFF
+
+\begin{document}
+\vspace*{0.35in}
+\begin{flushleft}
+{\Large
+\textbf\DIFdelbegin %DIFDELCMD < \newline{A hierarchical Bayesian framework for understanding the spatiotemporal
+%DIFDELCMD < dynamics of the intestinal epithelium}
+%DIFDELCMD < %%%
+\DIFdelend \DIFaddbegin \newline{A hierarchical Bayesian model for understanding the spatiotemporal
+dynamics of the intestinal epithelium}
+\DIFaddend }
+\newline
+\\
+O.J. Maclaren\(^1\)*, A. Parker\(^2\), C. Pin\(^2\), S.R.
+Carding\(^{2,3}\), A.J.M. Watson\(^{2,3}\), A.G. Fletcher\(^{4,5}\),
+H.M. Byrne\(^6\) and P.K. Maini\(^6\)
+\end{flushleft}
+
+
+\textbf{1 Department of Engineering Science, University of Auckland,
+Auckland, New Zealand}\\
+\textbf{2 Gut Health and Food Safety Research Programme, Institute of
+Food Research, Norwich, United Kingdom}\\
+\textbf{3 Norwich Medical School, University of East Anglia, Norwich,
+United Kingdom}\\
+\textbf{4 School of Mathematics and Statistics, University of Sheffield,
+Sheffield, United Kingdom}\\
+\textbf{5 Bateson Centre, University of Sheffield, Sheffield, United
+Kingdom}\\
+\textbf{6 Wolfson Centre for Mathematical Biology, Mathematical
+Institute, University of Oxford, Oxford, United Kingdom}\\
+*\textbf{oliver.maclaren@auckland.ac.nz}
+
+\section{Abstract}\label{abstract}
+
+Our work addresses two key challenges, one biological and one
+methodological. First, we aim to understand how proliferation and \DIFdelbegin \DIFdel{cellular }\DIFdelend \DIFaddbegin \DIFadd{cell
+}\DIFaddend migration rates in the intestinal epithelium are related under healthy,
+damaged (Ara-C treated) and recovering conditions, and how these
+relations can be used to identify mechanisms of repair and regeneration.
+We analyse new data, presented in more detail in a companion paper, in
+which BrdU/IdU cell-labelling experiments were performed under these
+respective conditions. Second, in considering how to more rigorously
+process these data and interpret them using mathematical models, we \DIFdelbegin \DIFdel{develop }\DIFdelend \DIFaddbegin \DIFadd{use
+}\DIFaddend a probabilistic, hierarchical \DIFdelbegin \DIFdel{framework. This framework }\DIFdelend \DIFaddbegin \DIFadd{approach. This }\DIFaddend provides a best-practice
+approach for systematically modelling and understanding the
+uncertainties that can otherwise undermine \DIFdelbegin \DIFdel{drawing }\DIFdelend \DIFaddbegin \DIFadd{the generation of }\DIFaddend reliable
+conclusions - uncertainties in experimental measurement and treatment,
+difficult-to-compare mathematical models of underlying mechanisms, and
+unknown or unobserved parameters. Both \DIFaddbegin \DIFadd{spatially }\DIFaddend discrete and continuous
+mechanistic models are considered and related via hierarchical
+conditional probability assumptions. \DIFdelbegin \DIFdel{This allows the
+incorporation of features of both continuum tissue models and discrete
+cellular models. }\DIFdelend We perform model checks on both
+in-sample and out-of-sample datasets and use \DIFdelbegin \DIFdel{these checks to illustrate }\DIFdelend \DIFaddbegin \DIFadd{them to show }\DIFaddend how to test
+possible model improvements and assess the robustness of our
+conclusions. \DIFdelbegin \DIFdel{This allows us to consider - and ultimately decide against
+- the need to retain finite-cell-size effects to explain a small misfit
+appearing in one set of long-time, out-of-sample predictions. Our
+approach leads us to }\DIFdelend \DIFaddbegin \DIFadd{We }\DIFaddend conclude, for the present set of experiments, that a
+primarily proliferation-driven model \DIFdelbegin \DIFdel{is adequate for predictions }\DIFdelend \DIFaddbegin \DIFadd{suffices to predict labelled cell
+dynamics }\DIFaddend over most time-scales.
+\DIFdelbegin \DIFdel{We describe each stage of our framework in detail, and
+hope that the present work may also serve as a guide for other
+applications of the hierarchical approach to problems in computational
+and systems biology more generally.
+}\DIFdelend 
+
+\section{Author Summary}\label{author-summary}
+
+The intestinal epithelium \DIFdelbegin \DIFdel{serves as }\DIFdelend \DIFaddbegin \DIFadd{is }\DIFaddend an important model system for studying the
+dynamics and regulation of multicellular populations. It is
+characterised by rapid rates of self-renewal and repair; \DIFdelbegin \DIFdel{failure of the
+regulation of }\DIFdelend \DIFaddbegin \DIFadd{dysregulation
+of }\DIFaddend these processes is thought to explain, in part, why many tumours \DIFdelbegin \DIFdel{occur }\DIFdelend \DIFaddbegin \DIFadd{form
+}\DIFaddend in the intestinal and similar epithelial tissues. These features have
+led to a large amount of work on estimating \DIFdelbegin \DIFdel{rate
+}\DIFdelend \DIFaddbegin \DIFadd{cell kinetic }\DIFaddend parameters in
+the intestine. There \DIFdelbegin \DIFdel{still }\DIFdelend remain, however, large gaps between the raw data
+collected, the \DIFdelbegin \DIFdel{experimental }\DIFdelend interpretation of these \DIFaddbegin \DIFadd{experimental }\DIFaddend data, and
+\DIFdelbegin \DIFdel{speculative mechanistic models for }\DIFdelend \DIFaddbegin \DIFadd{mechanistic models that describe the }\DIFaddend underlying processes. \DIFdelbegin \DIFdel{In
+our view hierarchical }\DIFdelend \DIFaddbegin \DIFadd{Hierarchical
+}\DIFaddend statistical modelling provides \DIFdelbegin \DIFdel{an ideal, but
+currently underutilised, method to begin to }\DIFdelend \DIFaddbegin \DIFadd{a natural method with which to }\DIFaddend bridge
+these gaps\DIFdelbegin \DIFdel{. This
+}\DIFdelend \DIFaddbegin \DIFadd{, but has, to date, been underutilised in the study of
+intestinal tissue self-renewal. As we illustrate, this }\DIFaddend approach makes
+essential use of the distinction between `measurement', `process' and
+`parameter' models, giving an explicit framework for combining
+experimental data and mechanistic modelling in the presence of multiple
+sources of uncertainty. \DIFdelbegin \DIFdel{As we illustrate, the hierarchical
+approach also provides a suitable framework for addressing other
+methodological questions of broader interest in systems biology: how to systematically relate discrete and continuous mechanistic models; how to
+formally interpret and visualise statistical evidence; and how to
+express causal assumptions in terms of conditional independence}\DIFdelend \DIFaddbegin \DIFadd{We apply this approach to analyse experiments on
+healthy, damaged and recovering intestinal tissue, finding that observed
+data can be explained by a model in which cell movement is driven
+primarily by proliferation}\DIFaddend .
+
+\linenumbers
+
+\section{Introduction}\label{introduction}
+
+\subsection{Motivation}\label{motivation}
+
+The intestinal epithelium provides crucial barrier, transport and
+homeostatic functions. These requirements lead it to undergo constant
+repair and regeneration, and dysfunctions can result in pathologies such
+as tumorigenesis {[}1--7{]}. \DIFdelbegin \DIFdel{While much }\DIFdelend \DIFaddbegin \DIFadd{Much }\DIFaddend work has been carried out on
+estimating the rate parameters in the intestine and other epithelia
+{[}1, 8--10{]}\DIFaddbegin \DIFadd{. However}\DIFaddend , attempts to interpret these experimental data
+using mechanistic modelling remain inconclusive \DIFdelbegin \DIFdel{(see e.g. }\DIFdelend {[}11--14{]}\DIFdelbegin \DIFdel{). A key
+issue in drawing reliable conclusions is }\DIFdelend \DIFaddbegin \DIFadd{, due to }\DIFaddend the
+lack of consistent and reproducible \DIFdelbegin \DIFdel{frameworks }\DIFdelend \DIFaddbegin \DIFadd{approaches }\DIFaddend for comparing models
+representing conjectured biological mechanisms, both to each other and
+to experimental data.
+
+This challenge goes in both directions: using experimental data (taken
+to be `true') to parameterise and test mathematical or computational
+formalisations of mechanistic theories, and using these models (taken to
+be `true') to predict, interpret and question experimental results. Both
+experimental measurements and mathematical models are subject to
+uncertainty, and we hence need systematic ways of quantifying these
+uncertainties and attributing them to the appropriate sources.
+Furthermore, establishing a common \DIFdelbegin \DIFdel{framework }\DIFdelend \DIFaddbegin \DIFadd{approach }\DIFaddend for analysing experimental
+results, formulating mechanistic models and generating new predictions
+has many potential advantages for enabling interdisciplinary teams to
+communicate in a common language \DIFdelbegin \DIFdel{and }\DIFdelend \DIFaddbegin \DIFadd{so that they may }\DIFaddend efficiently discover
+and follow promising directions as and when they arise.
+
+\subsection{Approach}\label{approach}
+
+We address the above issues by developing a \DIFdelbegin \DIFdel{best-practice hierarchical Bayesian framework }\DIFdelend \DIFaddbegin \DIFadd{hierarchical Bayesian model
+}\DIFaddend for combining measurements, models and inference procedures, and
+applying it to a \DIFdelbegin \DIFdel{tractable }\DIFdelend set of experiments targeting mechanisms of repair and
+regeneration in the intestinal epithelium.
+\DIFdelbegin \DIFdel{These experiments were performed }\DIFdelend \DIFaddbegin 
+
+\DIFadd{While progress is now being made in tackling this challenge in other
+areas of biology (see, for example, }{[}\DIFadd{15--17}{]}\DIFadd{), to our knowledge the
+problem of intestinal epithelial dynamics has not yet been investigated
+using such an approach.
+}
+
+\DIFadd{The experiments under investigation were performed by }\DIFaddend ourselves and are
+presented in more detail in {[}\DIFdelbegin \DIFdel{15}\DIFdelend \DIFaddbegin \DIFadd{18}\DIFaddend {]}. The aim of these experiments was
+to \DIFdelbegin \DIFdel{identify }\DIFdelend \DIFaddbegin \DIFadd{determine }\DIFaddend how proliferation rates, tissue growth and cellular
+migration rates are related under healthy, damaged (Ara-C treated) and
+recovering conditions, and how these relations can be used to identify
+mechanisms of repair and regeneration.
+
+A notable feature of the Bayesian approach to probabilistic modelling is
+that all sources of uncertainty are represented via probability
+distributions \DIFdelbegin \DIFdel{, regardless of the source of uncertainty (e.g.~physical or
+epistemic) }\DIFdelend {[}\DIFdelbegin \DIFdel{16--18}\DIFdelend \DIFaddbegin \DIFadd{19--21}\DIFaddend {]}. \DIFdelbegin \DIFdel{We will adopt this perspectivehere, and thus
+}\DIFdelend \DIFaddbegin \DIFadd{Adopting this perspective, }\DIFaddend we consider both
+observations and parameters to be random variables. Within a modelling
+\DIFdelbegin \DIFdel{or theoretical }\DIFdelend context, uncertainty may be associated with (at least): parameters
+within a mechanistic model of a biological or physical process, the
+mechanistic model of the process itself and the measurements of the
+underlying process. This leads, initially, to \DIFdelbegin \DIFdel{postulating }\DIFdelend \DIFaddbegin \DIFadd{the postulation of }\DIFaddend a full
+joint probability distribution for observable, unobservable/unobserved
+variables, parameters and data.
+
+Another key feature of the Bayesian perspective \DIFdelbegin \DIFdel{, of particular interest
+here, }\DIFdelend is that it provides a
+natural way of decomposing such full joint models in a
+\emph{hierarchical} manner, e.g.~by separating out processes occurring
+on different scales and at different analysis stages. A given set of
+hierarchical assumptions corresponds to assuming a factorisation of the
+full joint distribution mentioned above, and gives a more interpretable
+and tractable starting point.
+
+Our \DIFdelbegin \DIFdel{overall }\DIFdelend factorisation follows that described in {[}\DIFdelbegin \DIFdel{18--21}\DIFdelend \DIFaddbegin \DIFadd{21--24}\DIFaddend {]}. This
+comprises: a `measurement model', which defines the observable (sample)
+features to be considered reproducible and \DIFdelbegin \DIFdel{to what precision }\DIFdelend \DIFaddbegin \DIFadd{the precision with which }\DIFaddend they
+are reproducible (the measurement scale); an underlying `process' model,
+which captures the key mechanistic hypotheses of spatiotemporal
+evolution, and a prior parameter model which defines a broad class of
+\emph{a priori} acceptable \DIFdelbegin \DIFdel{possible }\DIFdelend parameter values.
+
+\DIFdelbegin \DIFdel{This hierarchical approach is being increasingly adopted - especially in
+areas such as environmental and geophysical science }%DIFDELCMD < {[}%%%
+\DIFdel{22, 23}%DIFDELCMD < {]}%%%
+\DIFdel{,
+ecological modelling }%DIFDELCMD < {[}%%%
+\DIFdel{24, 25}%DIFDELCMD < {]}%%%
+\DIFdel{, as well as in Bayesian statistical
+modelling and inverse problems more generally }%DIFDELCMD < {[}%%%
+\DIFdel{17--21, 26}%DIFDELCMD < {]}%%%
+\DIFdel{. In our
+view, however, many of the advantages of hierarchical Bayesian modelling
+remain under-appreciated and it offers many opportunities for
+formulating more unified frameworks for model-data and model-model
+comparison. Furthermore, we note that a similar hierarchical approach
+has recently received significant development in the context of the
+non-Bayesian `extended-likelihood' statistical modelling framework
+}%DIFDELCMD < {[}%%%
+\DIFdel{27--29}%DIFDELCMD < {]}%%%
+\DIFdel{. Thus, in our view, many of the benefits of the present
+approach can be attributed to its hierarchical aspect in particular
+(}%DIFDELCMD < {[}%%%
+\DIFdel{20}%DIFDELCMD < {]} %%%
+\DIFdel{also emphasises this point).
+}%DIFDELCMD < 
+
+%DIFDELCMD < %%%
+\DIFdel{As illustration of }\DIFdelend \DIFaddbegin \DIFadd{In order to illustrate }\DIFaddend some of the modelling benefits of the
+hierarchical approach, we show how both discrete and continuous process
+models can be derived and related using the hierarchical perspective. We
+discuss the \DIFdelbegin \DIFdel{connection of }\DIFdelend \DIFaddbegin \DIFadd{relationship between the }\DIFaddend conditional/hierarchical modelling
+\DIFdelbegin \DIFdel{to the causal modelling literature }\DIFdelend \DIFaddbegin \DIFadd{and causal modelling literatures }\DIFaddend (see {[}\DIFdelbegin \DIFdel{30--32}\DIFdelend \DIFaddbegin \DIFadd{25--27}\DIFaddend {]} for reviews) and
+illustrate the distinct roles of (Bayesian) predictive distributions
+vs.~parameter distributions for model checking and the assessment of
+evidence, respectively \DIFdelbegin \DIFdel{(see
+}\DIFdelend {[}\DIFdelbegin \DIFdel{17, 33--36}\DIFdelend \DIFaddbegin \DIFadd{20, 28--31}\DIFaddend {]}\DIFdelbegin \DIFdel{for discussion of these distinctions)}\DIFdelend .
+
+\subsection{Conclusions}\label{conclusions}
+
+Our hierarchical Bayesian \DIFdelbegin \DIFdel{framework }\DIFdelend \DIFaddbegin \DIFadd{model }\DIFaddend incorporates measurement, process and
+parameter models and facilitates separate checking of these components.
+This checking indicates, in the present application to the
+spatiotemporal dynamics of the intestinal epithelium, that much of the
+observed measurement variability \DIFdelbegin \DIFdel{is }\DIFdelend \DIFaddbegin \DIFadd{can be }\DIFaddend adequately captured by a simple
+measurement model. Similarly we find that a relatively simple process
+model can account for the main spatiotemporal dynamics of interest;
+however, model checking also identifies a minor misfit in the process
+model appearing over long time-scales. This motivates possible model
+improvements: we consider the inclusion of additional finite-cell-size
+effects in the process model, derived from a discrete process model and
+a subsequent continuum approximation formulated in terms of conditional
+probability. This only gives a slightly better qualitative fit to
+experimental data, however. We instead find that the dominant sources of
+the long-time misfits are probably due to some other factors - most
+likely relatively slow, time-varying proliferation rates (e.g.~due to
+circadian rhythms). In summary, a primarily proliferation-driven model
+appears adequate for predictions over moderate time-scales.
+
+\section{Materials and methods I: Experimental treatments and data
+processing}\label{materials-and-methods-i-experimental-treatments-and-data-processing}
+
+\subsection{Homeostasis mouse model}\label{homeostasis-mouse-model}
+
+To \DIFdelbegin \DIFdel{obtain estimates of intestinal epithelial }\DIFdelend \DIFaddbegin \DIFadd{estimate intestinal epithelial cell }\DIFaddend proliferation and migration rates
+under normal, homeostatic conditions in healthy mice, we used standard
+methods of proliferative cell labelling and tracing {[}1, 8--10,
+\DIFdelbegin \DIFdel{37--39}\DIFdelend \DIFaddbegin \DIFadd{32--34}\DIFaddend {]} (see also {[}\DIFdelbegin \DIFdel{15}\DIFdelend \DIFaddbegin \DIFadd{18}\DIFaddend {]} for full details). Actively proliferating
+cells in the intestinal crypts were labelled by single injection of the
+thymine analogue 5-bromo-2-deoxyuridine (BrdU) and labelled cells
+detected by immunostaining of intestinal sections collected from
+different individuals over time. Migration of labelled cells traced from
+the base of crypts to villus tips was monitored over the course of 96
+hours (5760 min). At least 30 \DIFaddbegin \DIFadd{such }\DIFaddend strips were analysed per mouse. The
+figures presented in {[}\DIFdelbegin \DIFdel{15}\DIFdelend \DIFaddbegin \DIFadd{18}\DIFaddend {]} \DIFdelbegin \DIFdel{show that }\DIFdelend \DIFaddbegin \DIFadd{reveal that these }\DIFaddend strips were independent
+and obtained from one-cell thick sections. All strips in which the base
+of the crypt and the tip of the villus were clearly observed were
+considered. All sides of the crypt that were visible and connected to
+entire villi were analysed. \DIFdelbegin \DIFdel{There was no arbitrary
+selection of strips. }\DIFdelend A typical image from those analysed in
+{[}\DIFdelbegin \DIFdel{15}\DIFdelend \DIFaddbegin \DIFadd{18}\DIFaddend {]} is \DIFdelbegin \DIFdel{also reproduced in the Supplementary information.
+}\DIFdelend \DIFaddbegin \DIFadd{shown in Supplementary Figure 4.
+}\DIFaddend 
+
+\subsection{Blocked-proliferation mouse
+model}\label{blocked-proliferation-mouse-model}
+
+To assess the effects of proliferation inhibition on crypt/villus
+migration, migrating and proliferating epithelial cells were monitored
+by double labelling with two thymine analogues (BrdU and IdU),
+administered sequentially a number of hours apart and subsequently
+distinguished by specific immunostaining in longitudinal sections of
+small intestine. Following initial IdU labelling of proliferating cells
+at t= -17h (-1020 min, relative to Ara-C treatment), mice were then
+treated with cytosine arabinoside (Ara-C) at 250 mg/kg body weight, a
+dose reported to inhibit proliferation without causing major crypt cell
+atrophy (see {[}\DIFdelbegin \DIFdel{15}\DIFdelend \DIFaddbegin \DIFadd{18}\DIFaddend {]} and references therein for \DIFdelbegin \DIFdel{full }\DIFdelend details). Tissues were
+collected over 24 hours, with BrdU administered one hour prior to
+collection to check for residual proliferation. Successful inhibition of
+proliferation following treatment with Ara-C was confirmed by an absence
+of BrdU (S-phase) and phospho-Histone H3 (pH3) staining (M-phase) in
+longitudinal sections of small intestine (again, see {[}\DIFdelbegin \DIFdel{15}\DIFdelend \DIFaddbegin \DIFadd{18}\DIFaddend {]} for full
+details).
+
+\subsection{Recovering-proliferation mouse
+model}\label{recovering-proliferation-mouse-model}
+
+The above Ara-C treatment effect was observed to last for at least 10h
+(600 min). Cell proliferation \DIFdelbegin \DIFdel{resumed }\DIFdelend \DIFaddbegin \DIFadd{returned }\DIFaddend to near normal levels in samples
+obtained 18h (1080 min) post-Ara-C treatment. We hence considered
+samples collected at least 10h post-Ara-C treatment as corresponding to
+`recovering-proliferation' conditions.
+
+\subsection{Data processing: reference grid and key observable
+features}\label{data-processing-reference-grid-and-key-observable-features}
+
+To \DIFdelbegin \DIFdel{connect }\DIFdelend \DIFaddbegin \DIFadd{relate }\DIFaddend experimental measurements to the \DIFaddbegin \DIFadd{mechanistic }\DIFaddend models discussed
+below we specified a reference grid and defined the key features of the
+data relative to this grid. These key features established an ideal
+`underlying population' from which samples were considered to be drawn.
+This also allowed us to construct our hierarchical model in a
+\DIFdelbegin \DIFdel{`top-down'
+}\DIFdelend (data-to-parameter) manner, starting from a measurement model.
+
+\begin{figure}
+\centering
+\includegraphics{../figures/figures_to_include/intestine-measurement.pdf}
+\caption{The (a) intestinal epithelium, (b) individual measurements as
+strips of cells and (c) collection of strips, where `C' and `V'
+indicated `crypt' and `villus'
+respectively.\label{fig:intestine-measurement}}
+\end{figure}
+
+With reference to Fig \ref{fig:intestine-measurement}, we \DIFdelbegin \DIFdel{considered the
+data to consist of }\DIFdelend \DIFaddbegin \DIFadd{viewed the
+data as }\DIFaddend a collection of one-dimensional `strips' of cells. \DIFdelbegin \DIFdel{These strips
+ran }\DIFdelend \DIFaddbegin \DIFadd{The strips
+extended }\DIFaddend from the base of the crypt to the tip of the villus, along the
+so-called `crypt-villus' axis. This corresponds to how strips were
+collected experimentally, but does not account for possible biases due
+to `angled' sampling {[}\DIFdelbegin \DIFdel{40, 41}\DIFdelend \DIFaddbegin \DIFadd{35, 36}\DIFaddend {]}. Each measurement was given a spatial
+cell location index \(i\) and a time label \(t\). The location index was
+measured in \DIFdelbegin \DIFdel{number }\DIFdelend \DIFaddbegin \DIFadd{numbers }\DIFaddend of cells along the crypt-villus axis, starting from
+the crypt base, and hence defined a discrete one-dimensional grid.
+\DIFdelbegin \DIFdel{The two }\DIFdelend \DIFaddbegin 
+
+\DIFadd{When notationally convenient, the }\DIFaddend labels \(i\) and \(t\) were \DIFdelbegin \DIFdel{also combined
+into a single index parameter \(s := (i,t)\) when notationally
+convenient, which then defined a }\DIFdelend \DIFaddbegin \DIFadd{combined
+in a }\DIFaddend two-dimensional grid of space-time points \DIFaddbegin \DIFadd{via the single index
+parameter \(s := (i,t)\)}\DIFaddend . A `typical' reference crypt-villus unit was
+characterised by the two vectors \((\mathbf{L},\mathbf{n})\), where
+\(\mathbf{L}\) is the vector of \DIFdelbegin \DIFdel{labelled fractions }\DIFdelend \DIFaddbegin \DIFadd{underlying labelled fractions
+(i.e.~occupancy probabilities) }\DIFaddend at each grid point and \(\mathbf{n}\) is
+the vector of number of samples at each grid point. This defines a
+useful reduction of the system from two spatial dimensions to one.
+
+We assumed that each strip was independent of the others as, in general,
+strips \DIFdelbegin \DIFdel{are }\DIFdelend \DIFaddbegin \DIFadd{were }\DIFaddend taken from different crypt-villus units and/or animals after
+`identical preparation'. Thus we did not ever directly possess, for
+example, measurements of a particular crypt with dimensions given in
+terms of a certain number of strips. We note, however, that \DIFdelbegin \DIFdel{in general
+}\DIFdelend the dynamics
+of strips in a given crypt may be affected by those in the same crypt.
+We did not consider this additional complexity in the present work, and
+so this complication should be kept in mind when interpreting the
+results.
+
+\section{Materials and methods II: Mathematical
+\DIFdelbegin \DIFdel{framework}\DIFdelend \DIFaddbegin \DIFadd{model}\DIFaddend }\DIFdelbegin %DIFDELCMD < %DIFDELCMD < \label{materials-and-methods-ii-mathematical-framework}%%%
+%DIFDELCMD < %%%
+\DIFdelend \DIFaddbegin \label{materials-and-methods-ii-mathematical-model}
+\DIFaddend 
+
+Our hierarchical probability model was constructed on the basis of
+conditional probability assumptions. These allowed us to factor out a
+measurement model, a mechanistic model and a parameter model.
+
+\subsection{Overall hierarchical
+structure}\label{overall-hierarchical-structure}
+
+Our \DIFdelbegin \DIFdel{overall }\DIFdelend model structure consisted of a full joint distribution, conditioned
+on a given experimental treatment \(E\) and known sample size vector
+\(\mathbf{n}\), decomposed according to
+
+\begin{equation}p(\mathbf{y},\mathbf{L},\mathbf{k}|\mathbf{n},E) = p(\mathbf{y}|\mathbf{L},\mathbf{n})p(\mathbf{L}|\mathbf{k})p(\mathbf{k}|E)\DIFdelbegin \DIFdel{.}\DIFdelend \DIFaddbegin \DIFadd{,}\DIFaddend \label{eq:decomp}\end{equation}
+
+where \(\mathbf{k}\) are the cellular proliferation rates (these are
+discussed \DIFdelbegin \DIFdel{more fully in the Process models and Parameter model sections
+}\DIFdelend below). This hierarchical factorisation corresponds to the
+assumption of conditional independence between the various levels, i.e.
+\(p(\mathbf{y}|\mathbf{L},\mathbf{k},\mathbf{n},E) = p(\mathbf{y}|\mathbf{L},\mathbf{n})\),
+\(p(\mathbf{L}|\mathbf{k},\mathbf{n},E) = p(\mathbf{L}|\mathbf{k})\) and
+\(p(\mathbf{k}|\mathbf{n},E) = p(\mathbf{k}|E)\). The first term,
+\(p(\mathbf{y}|\mathbf{L},\mathbf{n})\) is the \emph{measurement model};
+the second term \(p(\mathbf{L}|\mathbf{k})\) is the underlying
+\emph{process model}, and the last term \(p(\mathbf{k}|E)\) is a
+\emph{prior parameter model}. These are discussed in \DIFdelbegin \DIFdel{more detail }\DIFdelend \DIFaddbegin \DIFadd{turn }\DIFaddend below.
+
+Notably, a `causal' (structural invariance) assumption {[}\DIFdelbegin \DIFdel{30--32,
+42--47}\DIFdelend \DIFaddbegin \DIFadd{25--27,
+37--42}\DIFaddend {]} is made by assuming that the experimental treatment condition
+affects the process \DIFdelbegin \DIFdel{parameter }\DIFdelend \DIFaddbegin \DIFadd{parameters }\DIFaddend \(\mathbf{k}\) but not the structure of
+the measurement or process models. In \DIFdelbegin \DIFdel{general, we }\DIFdelend \DIFaddbegin \DIFadd{particular, while the experimental
+treatment ultimately affects \(\mathbf{y}\), in our model it does so
+\emph{via} its effect on \(\mathbf{k}\) and \(\mathbf{k}\)'s subsequent
+effect on \(\mathbf{L}\). This leads to the conditional independence
+structure mentioned. In terms of so-called directed acyclic graphs
+(DAGs), used in the causal modelling literature referenced above, we
+assumed
+}
+
+\begin{equation}
+\DIFadd{\begin{tikzcd}
+E \arrow[r] }& \DIFadd{\mathbf{k} \arrow[r] }& \DIFadd{\mathbf{L} \arrow[r] }& \DIFadd{\mathbf{y}. 
+\end{tikzcd}
+\label{eq:dag}}\end{equation}
+
+\DIFadd{Another way of stating this is that knowledge of \(\mathbf{L}\) (and
+\(\mathbf{n}\)) is sufficient to determine \(\mathbf{y}\) regardless of
+how \(\mathbf{L}\) was brought about, but that to know \(\mathbf{L}\) we
+(ultimately) have to know which experiment was carried out. Note that in
+general we }\DIFaddend suppressed, in our notation, the explicit conditioning on
+sample size \(\mathbf{n}\), since it was taken to be fixed and known, as
+well as the conditioning on \(E\) (keeping in mind that it \DIFdelbegin \DIFdel{only affects }\DIFdelend \DIFaddbegin \DIFadd{was assumed
+to only affect }\DIFaddend \(\mathbf{k}\)).
+
+The assumptions underlying the above factorisation could be checked to
+some extent. This relied on a distinction between working `within' the
+model - e.g.~parameter estimation assuming the model and factorisation
+is valid - and working `outside' the model, e.g.~checking the validity
+of the model structural assumptions themselves {[}\DIFdelbegin \DIFdel{17, 35, 36}\DIFdelend \DIFaddbegin \DIFadd{20, 30, 31}\DIFaddend {]}. This
+distinction is made in the Results section.
+
+Implicit in the model derivations, discussed below, we used a
+\emph{deterministic expression of conservation of probability} for the
+process model, as is typical for such equations {[}\DIFdelbegin \DIFdel{48}\DIFdelend \DIFaddbegin \DIFadd{43}\DIFaddend {]}. It sufficed
+for the presentation here to simply replace all functional dependencies
+on the process variable above with a dependence on the process
+parameters {[}\DIFdelbegin \DIFdel{18}\DIFdelend \DIFaddbegin \DIFadd{21}\DIFaddend {]}.
+
+\DIFaddbegin \DIFadd{We provide further discussion of our approach to interpretation of
+statistical evidence in the Supplementary Information.
+}
+
+\DIFaddend \subsection{Bayesian framework for predictions and incorporating
+information from
+observations}\label{bayesian-framework-for-predictions-and-incorporating-information-from-observations}
+
+The overall model of the previous section defined our initial
+`generative' probabilistic model, prior to explicitly incorporating
+\DIFdelbegin \DIFdel{the
+}\DIFdelend information from our experimental data. This enabled samples to be drawn
+from both prior predictive and prior parameter models, in the usual way
+(see e.g. {[}\DIFdelbegin \DIFdel{17, 49}\DIFdelend \DIFaddbegin \DIFadd{20, 44}\DIFaddend {]} and the Computational methods section below). In
+particular, the prior predictive distribution was used in its usual form
+
+\begin{equation}\mathbf{y} \sim p(\mathbf{y}) = \int p(\mathbf{y}|f(\mathbf{k}))p(\mathbf{k})d\mathbf{k}\label{eq:prior-predictive}\end{equation}
+
+which incorporates the aforementioned deterministic link between a given
+sample of process parameters and the output process variable,
+\(\mathbf{L}=f(\mathbf{k})\). Note that here \(\sim\) denotes
+`distributed as', or more relevantly, `samples drawn according to'.
+
+To incorporate new data \(\mathbf{y_0}\) we updated the parameters of
+the model, hence passing to a `posterior predictive' model {[}\DIFdelbegin \DIFdel{17}\DIFdelend \DIFaddbegin \DIFadd{20}\DIFaddend {]}
+
+\begin{equation}\mathbf{y} | \mathbf{y_0} \sim p(\mathbf{y}|\mathbf{y_0}) = \int p(\mathbf{y}|f(\mathbf{k}))p(\mathbf{k}|\mathbf{y_0})d\mathbf{k}\label{eq:posterior-predictive}\end{equation}
+
+where we used the conditional probability closure assumption
+\(p(\mathbf{y}|f(\mathbf{k}),\mathbf{y_0}) = p(\mathbf{y}|f(\mathbf{k}))\).
+This closure assumption can be interpreted as maintaining our same
+mechanistic model despite new observations.
+\DIFdelbegin \DIFdel{This also connects well with
+current theories of causality as based on ideas of structural invariance
+}%DIFDELCMD < {[}%%%
+\DIFdel{30--32, 42--47}%DIFDELCMD < {]}%%%
+\DIFdel{.
+}\DIFdelend 
+
+\DIFdelbegin \DIFdel{The logical flow of the updating process we used is depicted in Fig
+\ref{fig:update-process}. This depicts the `forward' predictive
+processes as arising from sequences of draws going from `lower-level' to
+`higher-level' distributions (though this does not correspond directly
+to the implementation - see Computational methods for specifics).
+Distributions were updated in the `reverse' manner by conditioning at
+the highest level and propagating the implications of this back down the
+hierarchy.
+}%DIFDELCMD < 
+
+%DIFDELCMD < \begin{figure}
+%DIFDELCMD < \centering
+%DIFDELCMD < \includegraphics{../figures/figures_to_include/update-process.pdf}
+%DIFDELCMD < %%%
+%DIFDELCMD < \caption{%
+{%DIFAUXCMD
+\DIFdelFL{Illustration of the Bayesian predictive and parameter inference
+processes. Following the arrows (1) to (2) we move from a prior
+parameter model (left, black) to associated predictive distribution
+(right, black) via the process and measurement models. Following the
+arrows (3) to (4) we condition on observed data to obtain a posterior
+parameter model (left, blue) and associated predictive distribution
+(right, blue). Our structural assumptions mean that the information
+gained is represented in updates of the parameter model while the
+process and measurement models maintain the same form. Modified from
+}%DIFDELCMD < {[}%%%
+\DIFdelFL{49}%DIFDELCMD < {]}%%%
+\DIFdelFL{, which was based on }%DIFDELCMD < {[}%%%
+\DIFdelFL{50}%DIFDELCMD < {]}%%%
+\DIFdelFL{.}%DIFDELCMD < %DIFDELCMD < \label{fig:update-process}%%%
+%%%
+}
+%DIFAUXCMD
+%DIFDELCMD < \end{figure}
+%DIFDELCMD < 
+
+%DIFDELCMD < %%%
+\DIFdelend \subsection{Measurement model}\label{measurement-model}
+
+The measurement model \(p(\mathbf{y}|\mathbf{L},\mathbf{n})\) component
+was taken to be a binomial distribution \(\mathcal{B}\) of the form
+
+\begin{align}p(\mathbf{y}|\mathbf{L},\mathbf{n}) = \underset{s=0}{\overset{S-1}{\Pi}}\mathcal{B}(n_s,L_s).\end{align}
+
+This related our `raw' observable \(\mathbf{y}\), the vector of counts
+of labelled cells at each grid point, to `ideal characteristics' of
+comparison \((\mathbf{L},\mathbf{n})\)\DIFdelbegin \DIFdel{,
+}%DIFDELCMD < 
+
+%DIFDELCMD < %%%
+\DIFdel{This was developed as follows. Firstly we assumed that all observations
+at a given grid point \(s\) were exchangeable (see }%DIFDELCMD < {[}%%%
+\DIFdel{16, 17}%DIFDELCMD < {]} %%%
+\DIFdel{for a
+formal definition and further discussion) conditional on
+\((\mathbf{L},\mathbf{n})\). Such exchangeability conditions imply the
+existence of Bayesian probability models and correspond, in essence, to
+statistical reduction/symmetry assumptions }%DIFDELCMD < {[}%%%
+\DIFdel{16, 17}%DIFDELCMD < {]}%%%
+\DIFdel{. We then adopted
+a slight strengthening }%DIFDELCMD < {[}%%%
+\DIFdel{16, 17}%DIFDELCMD < {]} %%%
+\DIFdel{of the general exchangeability
+assumption - which only leads to a pure existence theorem - to an
+assumption of conditional independence. This assumes that if the true
+parameters are known at each location then observations can be made
+independently at those locations.
+}%DIFDELCMD < 
+
+%DIFDELCMD < %%%
+\DIFdel{This latter strengthening assumption is worth noting because it is
+related to the issue, discussed in the section on experimental methods
+above, of taking each strip to be independent and the corresponding
+reduction from two spatial dimensions to one spatial dimension. As such
+it represents a simplifying approximation and should be kept in mind
+when interpreting the subsequent results.
+}%DIFDELCMD < 
+
+%DIFDELCMD < %%%
+\DIFdel{We also }\DIFdelend \DIFaddbegin \DIFadd{. We }\DIFaddend took the measurement
+component to be independent of \DIFaddbegin \DIFadd{the experimental treatment }\DIFaddend \(E\)\DIFdelbegin \DIFdel{-
+}\DIFdelend \DIFaddbegin \DIFadd{,
+}\DIFaddend i.e.~treatment was assumed to affect the underlying \emph{process
+parameters} only (\DIFdelbegin \DIFdel{this is discussed in more detail in }\DIFdelend \DIFaddbegin \DIFadd{see }\DIFaddend `Overall hierarchical structure' \DIFdelbegin \DIFdel{above, and corresponds to a `causal'
+assumption). }%DIFDELCMD < 
+
+%DIFDELCMD < %%%
+\subsubsection{\DIFdel{Likelihood and normal
+approximation}}%DIFAUXCMD
+\addtocounter{subsubsection}{-1}%DIFAUXCMD
+%DIFDELCMD < %DIFDELCMD < \label{likelihood-and-normal-approximation}%%%
+%DIFDELCMD < 
+
+%DIFDELCMD < %%%
+\DIFdel{The
+above defined our }\DIFdelend \DIFaddbegin \DIFadd{section). The
+}\DIFaddend measurement component \(p(\mathbf{y}|\mathbf{L},\mathbf{n})\) \DIFdelbegin \DIFdel{of the full sampling model for
+the probability of a set of observed labelled cells \(\mathbf{y}\) in
+samples of sizes \(\mathbf{n}\) given the vector of modelled underlying
+labelled fractions \(\mathbf{L}\). This }\DIFdelend then
+defined a likelihood function \(\mathcal{L}\) for this measurement
+model,
+\DIFdelbegin \DIFdel{which is
+proportional to the probability given by the sampling model evaluated
+for the observed data and considered as a function of \(\mathbf{L}\),
+i.e.
+}\DIFdelend 
+
+\begin{equation}\mathcal{L}(\mathbf{L};\mathbf{y},\mathbf{n}) = \underset{s=0}{\overset{S-1}{\Pi}}
+L_s^{y_s}(1-L_s)^{n_s-y_s} \propto p(\mathbf{y}|\mathbf{L},\mathbf{n}) = \underset{s=0}{\overset{S-1}{\Pi}}\mathcal{B}(n_s,L_s).\label{eq:likel-binom}\end{equation}
+
+\DIFdelbegin \DIFdel{We also used, for }\DIFdelend \DIFaddbegin \DIFadd{When }\DIFaddend interpreting model misfit \DIFdelbegin \DIFdel{, }\DIFdelend \DIFaddbegin \DIFadd{based on residuals, we applied the usual
+normal approximation to }\DIFaddend the \DIFdelbegin \DIFdel{fact that for each
+\(s\), if \(n_s\) is sufficiently large and \(L_s\) is not too close to 0 or 1 (e.g. \(n_sL_s\) and \(n_s(1-L_s) > 5\) is typical), then the
+}\DIFdelend binomial distribution\DIFdelbegin \DIFdel{\(\mathcal{B}(n_s,L_s)\) can be replaced by the
+normal approximation \(\mathcal{N}(n_sL_s,n_sL_s(1-L_s))\). In this
+}\DIFdelend \DIFaddbegin \DIFadd{. In that }\DIFaddend case,
+denoting the set of all measured labelled fractions through the (useful,
+but slightly non-standard) notation
+\(\mathbf{y}/\mathbf{n} := (y_1/n_1,...,y_S/n_S)\), \DIFaddbegin \DIFadd{we have
+}\DIFaddend 
+
+\begin{equation}\mathcal{L}(\mathbf{L};\mathbf{n},\frac{\mathbf{y}}{\mathbf{n}}) = p(\frac{\mathbf{y}}{\mathbf{n}}|\mathbf{L},\mathbf{n}) =
+\underset{s=0}{\overset{S-1}{\Pi}} \frac{1}{\sigma_s
+\sqrt{2\pi}}\exp{(-\frac{(\frac{y_s}{n_s}-L_s)^2}{2\sigma_s^2})}\label{eq:likel-norma}\end{equation}
+
+where the standard deviations are given by
+\(\sigma_s = \sqrt{\frac{L_s(1-L_s)}{n_s}}\).
+\DIFdelbegin \DIFdel{This normal approximation
+formulation was not used in the model fitting but provided a useful
+guide for checking model misfit based on residuals.
+}\DIFdelend 
+
+\subsection{Process models}\label{process-models}
+
+\DIFdelbegin \DIFdel{Our process model was developed in a number of stages and considered }\DIFdelend \DIFaddbegin \DIFadd{We developed our process model }\DIFaddend at different levels of resolution. \DIFdelbegin \DIFdel{Firstly}\DIFdelend \DIFaddbegin \DIFadd{First}\DIFaddend ,
+we considered a \DIFaddbegin \DIFadd{spatially }\DIFaddend discrete probabilistic model at the level of
+our measurement grid defined above. \DIFdelbegin \DIFdel{Then }\DIFdelend \DIFaddbegin \DIFadd{Second, }\DIFaddend we considered two \DIFdelbegin \DIFdel{different continuous approximationsto this - one }\DIFdelend \DIFaddbegin \DIFadd{spatially
+continuous approximations: one model }\DIFaddend excluding explicit cell-scale
+effects and one including \DIFdelbegin \DIFdel{explicit
+cell-scale effects}\DIFdelend \DIFaddbegin \DIFadd{them}\DIFaddend .
+
+\subsubsection{\DIFdelbegin \DIFdel{Discrete, measurement-grid-level }\DIFdelend \DIFaddbegin \DIFadd{Spatially discrete }\DIFaddend process
+model}\DIFdelbegin %DIFDELCMD < %DIFDELCMD < \label{discrete-measurement-grid-level-process-model}%%%
+%DIFDELCMD < %%%
+\DIFdelend \DIFaddbegin \label{spatially-discrete-process-model}
+\DIFaddend 
+
+Our basic `process' model described the evolution of the \DIFdelbegin \DIFdel{(population)
+`measurement' probability (labelled fraction}\DIFdelend \DIFaddbegin \DIFadd{occupancy
+probabilities (population labelled fractions}\DIFaddend ) at the scale of the
+measurement grid. This was derived as follows. \DIFdelbegin %DIFDELCMD < 
+
+%DIFDELCMD < %%%
+\DIFdelend With reference to Fig
+\ref{fig:intestine-measurement}, we considered a collection of
+one-dimensional `strips' of cells. We used \(l_i \in \{0,1\}\) as an
+indicator variable denoting the occupancy status of site \(i\) of a
+given strip. The full state of this strip was given by the vector
+\(\mathbf{l} = (l_0,l_1,...l_{S-1})\). \DIFdelbegin %DIFDELCMD < 
+
+%DIFDELCMD < %%%
+\DIFdelend We then sought a description of
+the probabilistic dynamics in terms of a discrete-time Markov chain for
+the probability distribution of the full state \(p(\mathbf{l},t)\)
+following standard arguments {[}\DIFdelbegin \DIFdel{48, 51}\DIFdelend \DIFaddbegin \DIFadd{43, 45}\DIFaddend {]}.
+
+We began from an explicit joint distribution for the full state and then
+reduced it to \DIFaddbegin \DIFadd{a }\DIFaddend description in terms of the set of `single-site'
+probability distributions \(p(l_i,t)\) for each site \(i\). This
+derivation was aided by adopting an explicit notation: the probabilities
+of occupancy and vacancy at site \(i\) at time \(t\) were denoted by
+\(p(l_i(t)=1)\) and \(p(l_i(t)=0)\) respectively. Since
+\(p(l_i(t)=1)+ p(l_i(t)=0) = 1\) we only needed to consider the
+probability of occupancy to fully characterise the distribution
+\(p(l_i(t))\).
+
+The equation of evolution for this probability was derived by
+considering conservation of probability in terms of probability fluxes
+in and out, giving, to first order in \(\Delta t\)\DIFaddbegin \DIFadd{,
+}\DIFaddend 
+
+\begin{align}p(l_i(t+\Delta t)=1) &- p(l_i(t)=1) = \nonumber \\ &\Delta t\sum_{j=0}^{i-1}k_j\left[p(l_{i-1}(t)=1,l_{i}(t)=0)-p(l_{i-1}(t)=0,l_{i}(t)=1)\right]. \end{align}
+
+The first term on the right \DIFdelbegin \DIFdel{gave }\DIFdelend \DIFaddbegin \DIFadd{represents }\DIFaddend a net `influx of occupancy
+probability' due to a single division event \DIFdelbegin \DIFdel{somewhere }\DIFdelend at site \(j < i\), each
+division event having a probability \DIFdelbegin \DIFdel{given by }\DIFdelend \(k_j\Delta t\). This flux \DIFdelbegin \DIFdel{meant }\DIFdelend \DIFaddbegin \DIFadd{means }\DIFaddend the
+value of the state variable \(l_i(t) = 0\) could be replaced, at the
+next time step, by the value of \(l_{i-1}(t) = 1\). \DIFdelbegin \DIFdel{The second
+term similarly represented }\DIFdelend \DIFaddbegin \DIFadd{Similarly the second
+term represents }\DIFaddend a net `outflux of occupancy probability' due to a
+division event \DIFdelbegin \DIFdel{somewhere }\DIFdelend at site \(j < i\). \DIFdelbegin %DIFDELCMD < 
+
+%DIFDELCMD < %%%
+\DIFdel{Since \(l_i(t)=0\) and \(l_i(t)=1\) partitioned the event space of
+\(l_i(t)\), we could use
+}%DIFDELCMD < 
+
+%DIFDELCMD < %%%
+\begin{displaymath}\DIFdel{p(l_{i-1}(t) = 1,l_i(t)=0) = p(l_{i-1}(t)=1) - p(l_{i-1}(t) = 1,l_i(t)=1)%DIFDELCMD < \label{eq:identities-one}%%%
+}\end{displaymath}
+%DIFAUXCMD
+%DIFDELCMD < 
+
+%DIFDELCMD < %%%
+\DIFdel{and similarly, since }\DIFdelend \DIFaddbegin \DIFadd{Partitioning on the events
+}\DIFaddend \(l_{i-1}(t)=0\) and \DIFdelbegin \DIFdel{\(l_{i-1}(t)=1\) partitioned
+the event space of \(l_{i-1}(t)\), we had
+}\DIFdelend \DIFaddbegin \DIFadd{\(l_i(t)\), we obtain
+}\DIFaddend 
+
+\DIFdelbegin \begin{displaymath}\DIFdel{p(l_{i-1}(t) = 0,l_i(t)=1) = p(l_{i}(t)=1) - p(l_{i-1}(t) = 1,l_i(t)=1). %DIFDELCMD < \label{eq:identities-two}%%%
+}\end{displaymath}
+%DIFAUXCMD
+%DIFDELCMD < 
+
+%DIFDELCMD < %%%
+\DIFdel{This led to the simplification in terms of only single-site probability
+distributions
+}%DIFDELCMD < 
+
+%DIFDELCMD < %%%
+\DIFdelend \begin{equation}p(l_i(t+\Delta t)=1) - p(l_i(t)=1) = \Delta t\sum_{j=0}^{i-1}k_j\left[p(l_{i-1}(t)=1)-p(l_i(t)=1)\right]. \label{eq:label-master-discrete-cons}\end{equation}
+
+\subsubsection{Underlying continuous model - zeroth-order
+approximation}\label{underlying-continuous-model---zeroth-order-approximation}
+
+To aid model interpretation and model cross comparisons we \DIFdelbegin \DIFdel{introduced a
+smooth parameter field of underlying labelled fractions }\DIFdelend \DIFaddbegin \DIFadd{derived a
+continuous approximation to the occupancy probability, }\DIFaddend \(L(x,t)\)\DIFdelbegin \DIFdel{,
+defined over a continuous space-time domain}\DIFdelend . This
+gave a further idealisation of the `underlying population' from which we
+envisaged the strips were sampled. This smoothness assumption, while not
+strictly necessary, meant some model properties could be interpreted in
+terms of local derivatives; it also reduced arbitrary dependence on
+discrete grid features, aiding future comparisons with off-lattice
+and/or continuum models \DIFdelbegin \DIFdel{(see }\DIFdelend {[}\DIFdelbegin \DIFdel{49}\DIFdelend \DIFaddbegin \DIFadd{44}\DIFaddend {]}\DIFdelbegin \DIFdel{for a review of various model types)}\DIFdelend .
+
+\DIFdelbegin \DIFdel{To derive the continuous approximation we first defined the position
+\(x\) as a continuous coordinate passing through the discrete cell
+indices. For example \(x = 0\) denoted the coordinate of the cell
+labelled `0' (base of the crypt), while \(x = 0.5\) was the location
+halfway between the cell labelled `0' and that labelled 1'. Sample
+locations consisting of space-time pairs were denoted by
+\(s = (x_s,t_s)\). Then, for sample locations \((i,t)\) corresponding to
+cell indices and arbitrary times, we matched the discrete model and
+continuous model using
+}%DIFDELCMD < 
+
+%DIFDELCMD < %%%
+\begin{displaymath}\DIFdel{p(l_i(t)=1|L(i,t)) = L(i,t)%DIFDELCMD < \label{eq:pop-param}%%%
+}\end{displaymath}
+%DIFAUXCMD
+%DIFDELCMD < 
+
+%DIFDELCMD < %%%
+\DIFdel{i.e. \(L(i,t)\) served as the parameter for a single measurement
+modelled as a Bernoulli trial at that sample location (as in the above
+Measurement model section).
+}%DIFDELCMD < 
+
+%DIFDELCMD < %%%
+\DIFdel{Next, the discrete dynamics of \(p(l_i(t)=1)\) were `transferred' to the
+continuous }\DIFdelend \DIFaddbegin \DIFadd{As detailed in the Supplementary Information, }\DIFaddend \(L(x,t)\) \DIFdelbegin \DIFdel{dynamics. In particular, since \(L(x,t)\) was
+taken to be a smooth function, we made the
+correspondence
+}\DIFdelend \DIFaddbegin \DIFadd{satisfies the
+equation
+}\DIFaddend 
+
+\DIFdelbegin \begin{align*}\DIFdel{p(l_{i-1}(t)=1|L(i-1,t)) }&\DIFdel{= L(i-1,t) \nonumber }\\ &\DIFdel{\equiv \nonumber}\\ \DIFdel{p(l_{i-1}(t)=1|L(i,t),L_x(i,t),...,\Delta x) }&\DIFdel{= L(i,t)-\Delta x \frac{\partial L(i,t)}{\partial x}+\frac{\Delta x^2}{2} \frac{\partial^2 L(i,t)}{\partial x^2} - ...}\end{align*}
+%DIFAUXCMD
+%DIFDELCMD < 
+
+%DIFDELCMD < %%%
+\DIFdel{where \(\Delta x = i-(i-1) = 1\) was the normalised cell length and we
+also conditioned on knowledge of the spatial derivatives at \(i\),
+\(L_x(i,t) = \frac{\partial L(i,t)}{\partial x}\) etc. The continuous
+spatial field effectively interpolated between - i.e. \emph{internal} to
+- points of the discrete grid, making use of local derivative
+information. Substituting the above Taylor series, and similar
+expressions, into the discrete Markov equation
+\ref{eq:label-master-discrete-cons} led to
+}%DIFDELCMD < 
+
+%DIFDELCMD < %%%
+\begin{displaymath}\DIFdel{\frac{\partial L(i,t)}{\partial t} + v(i)\frac{\partial L(i,t)}{\partial x} = \frac{1}{2}\left(\Delta x v(i) \frac{\partial^2 L(i,t)}{\partial x^2} - \Delta t \frac{\partial^2 L(i,t)}{\partial t^2}\right) + ...%DIFDELCMD < \label{eq:model-pde-ts}%%%
+}\end{displaymath}
+%DIFAUXCMD
+%DIFDELCMD < 
+
+%DIFDELCMD < %%%
+\DIFdel{where, for completeness, we also retained higher order terms in
+\(\Delta t\) for the continuous model. We similarly assumed the
+existence of smooth functions \(k(x,t)\) and \(v(x,t)\) that satisfied
+the discrete relations
+}%DIFDELCMD < 
+
+%DIFDELCMD < %%%
+\begin{displaymath}\DIFdel{v(i,t) = \sum_{j=0}^{i-1} k_j \Delta x = \int_0^{i} k(x,t) dx + v(0). %DIFDELCMD < \label{eq:model-veloc-ts}%%%
+}\end{displaymath}
+%DIFAUXCMD
+%DIFDELCMD < 
+
+%DIFDELCMD < %%%
+\DIFdel{Furthermore, we assumed \(k(x,t) = k(x)\), \(v(x,t) = v(x)\) and
+\(v(0) = 0\) in what follows. This assumption is discussed further in
+the Results section.
+}%DIFDELCMD < 
+
+%DIFDELCMD < %%%
+\DIFdel{We obtained `closure' for the continuous model by keeping only the
+lowest order terms in both time and space, and further asserting that
+the equation structure obtained held \emph{for all continuous \(x\)} and
+not just discrete \(i\) (this could also be motivated by an assumption
+of grid translation invariance). This gave the advection equation
+}%DIFDELCMD < 
+
+%DIFDELCMD < %%%
+\DIFdelend \begin{equation}\frac{\partial L(x,t)}{\partial t} + v(x)\frac{\partial L(x,t)}{\partial x} = 0\label{eq:model-pde}\end{equation}
+
+with
+
+\begin{equation}v(x) = \int_0^{x} k(x') dx'\DIFdelbegin \DIFdel{.}\DIFdelend \DIFaddbegin \DIFadd{,}\DIFaddend \label{eq:model-veloc}\end{equation}
+
+\DIFdelbegin \DIFdel{When we incorporated cell death, with discrete rates \(d_i\), this led
+to the same equations with \(k\) replaced by \(k-d\), where \(d(x,t)\)
+was defined similarly to \(k(x,t)\). Hence we interpreted \(k\) in the above as the net cell production rate (which hence could be negative) }\DIFdelend \DIFaddbegin \DIFadd{where \(k(x)\) denotes the (net) proliferation rate}\DIFaddend .
+
+\DIFdelbegin \DIFdel{The above partial differential equation has an interpretation as the
+advection of a tracer in an incompressible fluid field with a source,
+and is sometimes referred to in this context as the `colour equation'
+}%DIFDELCMD < {[}%%%
+\DIFdel{52}%DIFDELCMD < {]}%%%
+\DIFdel{.
+}%DIFDELCMD < 
+
+%DIFDELCMD < %%%
+\DIFdelend \subsubsection{Underlying continuous model - higher-order spatial
+effects}\label{underlying-continuous-model---higher-order-spatial-effects}
+
+Our `zeroth-order' continuous approximation above was obtained by
+neglecting all higher-order terms in \(\Delta x\). We \DIFdelbegin \DIFdel{conceived of this
+as a process of `continualisation' - the reverse process of discretising
+a continuous equation to obtain a numerical scheme (see e.g. }%DIFDELCMD < {[}%%%
+\DIFdel{53}%DIFDELCMD < {]}
+%DIFDELCMD < %%%
+\DIFdel{and }%DIFDELCMD < {[}%%%
+\DIFdel{52}%DIFDELCMD < {]} %%%
+\DIFdel{Section 8.6 for similar ideas). We thus expected that a
+better continuum approximation could }\DIFdelend \DIFaddbegin \DIFadd{anticipate that a
+more accurate continuum approximation may }\DIFaddend be obtained by retaining
+higher-order spatial derivatives and hence finite-cell-size effects.
+\DIFdelbegin %DIFDELCMD < 
+
+%DIFDELCMD < %%%
+\DIFdel{As described below, retaining the higher-order spatial derivative
+naturally gave }\DIFdelend \DIFaddbegin \DIFadd{This gives }\DIFaddend rise to a Fokker-Planck equation containing a diffusion term
+{[}\DIFdelbegin \DIFdel{48}\DIFdelend \DIFaddbegin \DIFadd{43}\DIFaddend {]}\DIFdelbegin \DIFdel{. Equations of this (and similar) form }\DIFdelend \DIFaddbegin \DIFadd{:
+}
+
+\begin{equation}\DIFadd{\frac{\partial L(x,t)}{\partial t} + v(x)\frac{\partial L(x,t)}{\partial x} = D(x)\frac{\partial^2 L(x,t)}{\partial x^2}\label{eq:model-pde-higher-two}}\end{equation}
+
+\DIFadd{where \(D(x) = (1/2)\Delta x v(x)\). Similar equations }\DIFaddend have been derived
+before, \DIFdelbegin \DIFdel{also }\DIFdelend based on continuous approximations to discrete master equations
+\DIFdelbegin \DIFdel{(e.g. }\DIFdelend {[}\DIFdelbegin \DIFdel{54--57}\DIFdelend \DIFaddbegin \DIFadd{46--49}\DIFaddend {]}\DIFdelbegin \DIFdel{also contain similar ideas; }%DIFDELCMD < {[}%%%
+\DIFdel{49}%DIFDELCMD < {]} %%%
+\DIFdel{gives
+additional references). }%DIFDELCMD < 
+
+%DIFDELCMD < %%%
+\DIFdel{To derive this higher-order approximation we reconsidered the expansion
+in \ref{eq:model-pde-ts}. We again neglected all terms of order
+\(\Delta t\), but here retained the next order spatial derivative
+leading to
+}%DIFDELCMD < 
+
+%DIFDELCMD < %%%
+\begin{displaymath}\DIFdel{\frac{\partial L(x,t)}{\partial t} + v(x)\frac{\partial L(x,t)}{\partial x} = D(x)\frac{\partial^2 L(x,t)}{\partial x^2}%DIFDELCMD < \label{eq:model-pde-higher-two}%%%
+}\end{displaymath}
+%DIFAUXCMD
+%DIFDELCMD < 
+
+%DIFDELCMD < %%%
+\DIFdel{where \(D(x) = (1/2)\Delta x v(x)\)}\DIFdelend . \DIFdelbegin %DIFDELCMD < 
+
+%DIFDELCMD < %%%
+\DIFdelend Retaining the second spatial derivative hence \DIFdelbegin \DIFdel{amounted }\DIFdelend \DIFaddbegin \DIFadd{amounts }\DIFaddend to
+accounting for spatial effects due to finite cell sizes. We \DIFdelbegin \DIFdel{first }\DIFdelend evaluated
+our original `zeroth-order' (advection) model against our data, \DIFdelbegin \DIFdel{but }\DIFdelend \DIFaddbegin \DIFadd{and }\DIFaddend also
+examined the extent to which higher-order spatial terms such as those
+considered above could account for any misfits.
+
+\subsection{\DIFdelbegin \DIFdel{Parameter model}\DIFdelend \DIFaddbegin \DIFadd{Definition of priors}\DIFaddend }\DIFdelbegin %DIFDELCMD < %DIFDELCMD < \label{parameter-model}%%%
+%DIFDELCMD < %%%
+\DIFdelend \DIFaddbegin \label{definition-of-priors}
+\DIFaddend 
+
+Since we adopted a Bayesian perspective in this work we required a
+parameter prior model \DIFdelbegin \DIFdel{to }\DIFdelend \DIFaddbegin \DIFadd{that could }\DIFaddend express additional modelling
+assumptions \DIFdelbegin \DIFdel{(}\DIFdelend {[}\DIFdelbegin \DIFdel{17}\DIFdelend \DIFaddbegin \DIFadd{20}\DIFaddend {]}\DIFdelbegin \DIFdel{provides an applied account of the role of priors in Bayesian
+inference, while }\DIFdelend \DIFaddbegin \DIFadd{. Essentially, this is an empirical Bayesian
+approach as we used an empirical correlation matrix }\DIFaddend {[}\DIFdelbegin \DIFdel{36}\DIFdelend \DIFaddbegin \DIFadd{50}\DIFaddend {]}\DIFdelbegin \DIFdel{presents a more philosophical perspective)}\DIFdelend .
+
+Candidate proliferation profiles, varying with cell locations, were
+represented as realisations from a prior given in terms of a discretised
+random field (a random vector) \(\mathbf{k}\) of length \(m=5\),
+modelled as a multivariate Gaussian
+\DIFdelbegin \DIFdel{\(\mathcal{N}(\symbf{\mu},\mathbf{C})\) }\DIFdelend \DIFaddbegin \DIFadd{\(\mathcal{N}(\boldsymbol{\mu},\mathbf{C})\) }\DIFaddend with joint distribution
+
+\begin{equation}p(\mathbf{k}) = \frac{1}{(2\pi)^m\sqrt{\mbox{det}(\mathbf{C})}}\exp(-(\mathbf{k}-\DIFdelbegin %DIFDELCMD < \symbf{\mu}%%%
+\DIFdelend \DIFaddbegin \boldsymbol{\mu}\DIFaddend )^T\mathbf{C}^{-1}(\mathbf{k}-\DIFdelbegin %DIFDELCMD < \symbf{\mu}%%%
+\DIFdelend \DIFaddbegin \boldsymbol{\mu}\DIFaddend )/2)\label{eq:prior}\end{equation}
+
+characterised by its mean vector \DIFdelbegin \DIFdel{\(\symbf{\mu}\) }\DIFdelend \DIFaddbegin \DIFadd{\(\boldsymbol{\mu}\) }\DIFaddend and covariance
+matrix \(\mathbf{C}\). This parameter prior constrained the variability
+of the spatially varying parameter field \emph{a priori} to help avoid
+unphysical solutions.
+
+The covariance matrix was first decomposed into a standard deviation
+matrix given by the outer (tensor) product of the standard deviation
+vector for each variable,
+\DIFdelbegin \DIFdel{\(\mathbf{S} = \symbf{\sigma}\symbf{\sigma}^T\)}\DIFdelend \DIFaddbegin \DIFadd{\(\mathbf{S} = \boldsymbol{\sigma}\boldsymbol{\sigma}^T\)}\DIFaddend , and
+correlation matrix \(\mathbf{R}\). These multiply element-wise to give
+\(C_{ij} = S_{ij}R_{ij}\) (no summation). We then adopted the common,
+equivalent, representation
+\(\mathbf{C} = \mathbf{D}\mathbf{R}\mathbf{D}\) where \(\mathbf{D}\) is
+a diagonal matrix with diagonal entries \(D_{ii} = \sigma_i\).
+
+\DIFdelbegin \DIFdel{This decomposition of the covariance matrix into separate parts was
+adopted because it we felt it presented a clearer picture of how the
+smoothness and magnitude of variations are controlled via off-diagonal
+and diagonal terms, respectively, in addition to the mean response. We also varied these prior assumptions to explore the solution dependence
+on parameter variability (and, as discussed below, our code is made
+available for further sensitivity tests).
+}%DIFDELCMD < 
+
+%DIFDELCMD < %%%
+\DIFdelend We took the correlation matrix \(\mathbf{R}\) to have the
+squared-exponential (Gaussian) correlation function
+\(k(i,j) = \exp(\frac{(i-j)^2}{2l_c^2})\), where \(l_c\) is a parameter
+controlling the characteristic length-scale of the correlations in terms
+of number of indices of \(\mathbf{k}\). This characteristic length scale
+gives the number of \(\mathbf{k}\) indices over which the correlation
+function decays to \(1/e\). This allowed us to control the `smoothness'
+of the realisations from the \(\mathbf{k}\) prior, in the sense that as
+\(l_c\) is increased the values \(\mathbf{k}_i\) and \(\mathbf{k}_j\)
+tend to be more similar.
+
+The matrix \(\mathbf{R}\) was generated by evaluating this correlation
+function at discrete locations along the crypt-villus axis. This
+discretisation was chosen to be coarser than the measurement grid and
+gave a variation somewhat similar to compartment-style regions of
+proliferation activity. This corresponded to assuming that the cell-type
+and associated proliferation rates varied on a coarser scale than
+individual cells, and was thus somewhat similar to a compartment-style
+assumption {[}\DIFdelbegin \DIFdel{58, 59}\DIFdelend \DIFaddbegin \DIFadd{51, 52}\DIFaddend {]}, though the resulting proliferation rate
+function is defined for all values of the finer, individual-cell scale
+\(x\). The parameter \(l_c\) could also be interpreted as a `parameter
+correlation length' for the proliferation rates, a measure of the number
+of parameters - or number of `compartments' - over which the
+correlations decay. We considered correlation lengths of 1-2 parameters.
+
+We found it most informative to visualise realisations of the whole
+function from the resulting prior rather than simply give the individual
+parameters/matrices separately ({[}\DIFdelbegin \DIFdel{18}\DIFdelend \DIFaddbegin \DIFadd{21}\DIFaddend {]} discusses this visualisation
+approach to priors in more detail). These are hence discussed and
+displayed in more detail in the Results section below.
+
+\subsection{Computational methods}\label{computational-methods}
+
+\subsubsection{Implementation of MCMC sampling and Bayesian
+updating}\label{implementation-of-mcmc-sampling-and-bayesian-updating}
+
+\DIFdelbegin \DIFdel{To implement the updating from prior to posterior parameter
+distributions, given measurements, we used Monte Carlo Markov Chain
+(MCMC) sampling (see }%DIFDELCMD < {[}%%%
+\DIFdel{60}%DIFDELCMD < {]} %%%
+\DIFdel{for a comprehensive reference). In
+particular, we used }\DIFdelend \DIFaddbegin \DIFadd{We used }\DIFaddend the (open source) Python package \DIFdelbegin \DIFdel{\emph{emcee}
+}\DIFdelend \DIFaddbegin \DIFadd{emcee
+}\DIFaddend (http://dan.iel.fm/emcee/) \DIFdelbegin \DIFdel{which implements an `affine-invariant
+ensemble sampler' MCMC algorithm and has been applied in particular to astrophysics problems (see }\DIFdelend \DIFaddbegin \DIFadd{to perform Markov Chain Monte Carlo (MCMC)
+}\DIFaddend {[}\DIFdelbegin \DIFdel{61}\DIFdelend \DIFaddbegin \DIFadd{53}\DIFaddend {]} \DIFdelbegin \DIFdel{for details)}\DIFdelend \DIFaddbegin \DIFadd{to obtain samples from the posterior distributions}\DIFaddend . Given
+samples from the resulting prior and posterior parameter distributions,
+respectively, prior and posterior predictive distributions were obtained
+by forward simulation of the process model described below. We note that
+each candidate proliferation rate vector \(\mathbf{k}\) is connected to
+the measurements \(\mathbf{y}\) via the latent vector \(\mathbf{L}\);
+since this step is deterministic, however, no additional sampling steps
+were required for the process model component.
+
+\subsubsection{Differential equations}\label{differential-equations}
+
+For the results in all sections other than the final results section in
+which we include higher-order spatial effects, we solved the
+differential equation model using the \emph{PyCLAW} {[}\DIFdelbegin \DIFdel{62, 63}\DIFdelend \DIFaddbegin \DIFadd{54, 55}\DIFaddend {]} Python
+interface to the \emph{CLAWPACK} {[}\DIFdelbegin \DIFdel{64}\DIFdelend \DIFaddbegin \DIFadd{56}\DIFaddend {]} set of solvers for hyperbolic
+PDEs. We adapted a Riemann solver for the colour equation available from
+the Riemann solver repository (https://github.com/clawpack/riemann). For
+testing the inclusion of higher-order spatial effects (thus changing the
+class of our equations from hyperbolic to parabolic) we used the Python
+finite-volume solver \emph{FiPy} {[}\DIFdelbegin \DIFdel{65}\DIFdelend \DIFaddbegin \DIFadd{57}\DIFaddend {]}.
+
+\subsubsection{Data and source code
+availability}\label{data-and-source-code-availability}
+
+Our code is available in the form of a Jupyter Notebook
+(http://ipython.org/notebook.html) in the Supplementary Information. \DIFdelbegin \DIFdel{To
+run these we used }\DIFdelend \DIFaddbegin \DIFadd{We
+ran these using }\DIFaddend the Anaconda distribution of Python
+(https://store.continuum.io/cshop/anaconda) which is a (free)
+distribution bundling a number of scientific Python tools. Any
+additional Python packages and instructions which may be required are
+listed at the beginning of our Jupyter Notebook.
+
+\DIFdelbegin \subsection{\DIFdel{Interpretation of statistical
+evidence}}%DIFAUXCMD
+\addtocounter{subsection}{-1}%DIFAUXCMD
+%DIFDELCMD < %DIFDELCMD < \label{interpretation-of-statistical-evidence}%%%
+%DIFDELCMD < 
+
+%DIFDELCMD < %%%
+\DIFdel{We have described above how mechanistic or causal assumptions relate to
+assumptions of structural invariance under different scenarios. In order
+to interpret the results that follow, however, we also required an
+interpretation of the `statistical evidence' that a set of measurements
+provided about parameter values within a fixed model structure. This
+proved a surprisingly controversial topic and we encountered continuing
+debate about fundamental principles and definitions of statistical
+evidence }%DIFDELCMD < {[}%%%
+\DIFdel{35, 66--69}%DIFDELCMD < {]}%%%
+\DIFdel{.
+}%DIFDELCMD < 
+
+%DIFDELCMD < %%%
+\DIFdel{Following our conditional modelling approach, we decided to adopt the
+simple - yet quite generally applicable - principle of evidence based on
+conditional probability: if we observe \(b\) and \(p(a|b) > p(a)\) then
+we have evidence for \(a\). A `gold-standard' theory of statistical
+evidence starting from this premise has been developed and defended
+recently by Evans in a series of papers (summarised in }%DIFDELCMD < {[}%%%
+\DIFdel{35}%DIFDELCMD < {]}%%%
+\DIFdel{).
+Besides simplicity, a nice feature of this approach, that we used below,
+is that it can be applied both to prior and posterior predictive
+distribution comparisons such as
+\(p(\mathbf{y}|\mathbf{y_0}) \overset{?}{>} p(\mathbf{y})\), as well as
+to prior and posterior parameter distribution comparisons such as
+\(p(\mathbf{k}|\mathbf{y_0}) \overset{?}{>} p(\mathbf{k})\). This
+approach is not without criticism, however (again, see }%DIFDELCMD < {[}%%%
+\DIFdel{35, 66--69}%DIFDELCMD < {]}
+%DIFDELCMD < %%%
+\DIFdel{for an entry point to the ongoing debates).
+}%DIFDELCMD < 
+
+%DIFDELCMD < %%%
+\DIFdel{Another notable feature of the interpretation of statistical evidence
+that we adopted below is that we emphasised the visual comparison of
+various prior and posterior distributions, rather than adopting
+arbitrary numerical standards (}%DIFDELCMD < {[}%%%
+\DIFdel{18}%DIFDELCMD < {]} %%%
+\DIFdel{advocates a similar `movie
+strategy' for the interpretation of statistical evidence and inference
+procedures, }%DIFDELCMD < {[}%%%
+\DIFdel{17, 36, 70, 71}%DIFDELCMD < {]} %%%
+\DIFdel{similarly emphasise the benefits of
+graphical visualisation methods in statistics).
+}%DIFDELCMD < 
+
+%DIFDELCMD < %%%
+\DIFdelend \section{Results}\label{results}
+
+\subsection{Parameter inference under homeostatic (healthy)
+conditions}\label{parameter-inference-under-homeostatic-healthy-conditions}
+
+Fig \ref{fig:BrdU-prior-to-posterior-prolif-vel} illustrates the process
+of updating from realisations of the prior distributions of the
+proliferation and velocity fields to realisations of their posterior
+(post-data) distributions. \DIFaddbegin \DIFadd{As discussed in the Methods section above,
+these are generated by an underlying piecewise-constant Gaussian random
+field of proliferation rates, \(\mathbf{k}\). This has length \(m=5\),
+and defines an assignment of the cell indices into
+biologically-motivated regions of proliferation activity.
+}
+
+\DIFaddend The left-hand side of the figure shows simulations from the prior
+distribution for proliferation field (top) and realisations from the
+induced distribution for the velocity field (bottom), respectively. The
+right-hand side shows the corresponding simulations after the prior
+parameter distribution has been updated to a posterior parameter
+distribution. The prior-to-posterior parameter estimation was carried
+out using the MCMC sampling approach described above with \(t = 120\)
+min (2 h) as an initial condition and \(t = 360\) min (6 h) and \(600\)
+min (10 h) as given data. The initial condition for the underlying
+labelled fraction \DIFaddbegin \DIFadd{(occupancy probability) }\DIFaddend was determined by fitting a
+smoothing spline to the data. The prior distribution for the
+proliferation field shown in Fig
+\ref{fig:BrdU-prior-to-posterior-prolif-vel} incorporated a weak mean
+trend in net proliferation rates, rising from the crypt base to the
+mid-crypt before falling exponentially to zero over the last few
+parameter regions post-crypt end, and a parameter correlation length of
+1. These assumptions can be relaxed/varied with little effect, though
+typically a non-zero parameter correlation length and a shut-off in
+proliferation after the crypt end produce more stable (well-identified)
+estimates. \DIFdelbegin \DIFdel{As mentioned, the code is available for use and so these
+assumptions are able to be varied by future researchers. }\DIFdelend Additional visualisations of the parameter inferences are
+\DIFdelbegin \DIFdel{also provided in the
+Supplementary information}\DIFdelend \DIFaddbegin \DIFadd{provided in Supplementary Figures 1-3}\DIFaddend .
+
+\begin{figure}
+\centering
+\includegraphics{../figures/figures_to_include/BrdU-prior-to-posterior-prolif-vel.pdf}
+\caption{Simulated realisations from the prior (left) and posterior
+(right) distributions for proliferation profiles (top) and velocities
+(bottom). After data are obtained the posterior distributions are much
+more tightly-constrained, and are picking out biologically plausible
+results (see main text).\label{fig:BrdU-prior-to-posterior-prolif-vel}}
+\end{figure}
+
+\subsection{Parameter inference for blocked proliferation
+conditions}\label{parameter-inference-for-blocked-proliferation-conditions}
+
+Fig \ref{fig:AraC-prior-to-posterior-prolif-vel} is the same as Fig
+\ref{fig:BrdU-prior-to-posterior-prolif-vel} described in the previous
+section, but this time under treatment by Ara-C. \DIFdelbegin \DIFdel{The previous results
+}\DIFdelend \DIFaddbegin \DIFadd{Results }\DIFaddend from the
+baseline case are shown in grey, while \DIFdelbegin \DIFdel{the new results under
+}\DIFdelend \DIFaddbegin \DIFadd{those from }\DIFaddend Ara-C treatment are
+shown in blue. Here 1140 min (19 h post IdU labelling, 2 h post Ara-C
+treatment) was used as the initial condition and 1500 min (25 h post IdU
+labelling, 8 h post Ara-C treatment) used for fitting. The intermediate
+time 1260 min (21 h post IdU labelling, 4 h post Ara-C treatment) and
+later time 1620 min (27 h post IdU labelling, 10 h post Ara-C treatment)
+were used as out-of-sample comparisons (see later).
+
+\begin{figure}
+\centering
+\includegraphics{../figures/figures_to_include/AraC-prior-to-posterior-prolif-vel-legend.pdf}
+\caption{Simulated realisations from the prior (left) and posterior
+(right) distributions for proliferation profiles (top) and velocities
+(bottom) under Ara-C treatment (blue) as compared to no treatment
+(grey). The velocities are reduced to near zero, as are the
+proliferation rates, though the latter are
+noisier.\label{fig:AraC-prior-to-posterior-prolif-vel}}
+\end{figure}
+
+As can be seen, there is \DIFdelbegin \DIFdel{a }\DIFdelend clear inhibition of proliferation and an even
+clearer effect on the \DIFaddbegin \DIFadd{cell }\DIFaddend migration (growth) velocity. The \DIFaddbegin \DIFadd{greater
+variability in the }\DIFaddend underlying parameter results \DIFdelbegin \DIFdel{are clearly more variable than those in }\DIFdelend \DIFaddbegin \DIFadd{compared to }\DIFaddend the baseline
+case \DIFdelbegin \DIFdel{. This }\DIFdelend may indicate, for example, greater parameter underdetermination
+and/or inconsistency of the model. This is not surprising as we expect
+all \DIFdelbegin \DIFdel{the }\DIFdelend proliferation parameters to be reduced to similar (low) values and
+hence \DIFdelbegin \DIFdel{the parameters become }\DIFdelend \DIFaddbegin \DIFadd{to become become }\DIFaddend less distinguishable.
+
+To add additional stability to the results we can attempt to reduce
+underdetermination in the parameters by increasing the parameter
+correlation length and inducing an effectively more `lumped'
+representation of the parameter field (since values tend to stick
+together more). Doing this removed the more extreme negative net
+proliferation in the posterior profile, however it still allowed for
+small amounts of negative net proliferation/velocity (the available
+Jupyter notebook can be used to explore various prior assumptions).
+
+Again, the need to introduce more stability is likely due to some
+combination of the limitations of resolution, a consequence of trying to
+fit the data too closely, or an indication of model inadequacies. In
+particular, under inhibited-proliferation conditions the effective
+number of parameters would be expected to be reduced. When fitting the
+full model, with largely independent parameters for each region, it is
+to be expected that some additional regularisation would be required for
+greater stability.
+
+\subsection{Parameter inference for recovering proliferation
+conditions}\label{parameter-inference-for-recovering-proliferation-conditions}
+
+Ara-C is metabolised between 10-12 h post-treatment. The two times
+considered here, 1620 min and 2520 min, correspond to 10 h and 25 h post
+Ara-C treatment, respectively, i.e to the end of the effect and after
+the resumption of proliferation. Hence, to check for the recovery of
+proliferation, we fitted the model using 1620 min as the initial
+condition and 2520 min as the final time.
+
+Fig \ref{fig:AraC-recovery-prior-to-posterior-prolif-vel} is the same as
+Fig \ref{fig:BrdU-prior-to-posterior-prolif-vel} and Fig
+\ref{fig:AraC-prior-to-posterior-prolif-vel} described in the previous
+sections, but this time after/during recovering from treatment by Ara-C.
+The previous results from the baseline case are shown in grey, while the
+new results following recovery from Ara-C treatment are shown in blue.
+Here 1620 min (27 h post IdU labelling, 10 h post Ara-C treatment) was
+used as the initial condition and 2520 min (42 h post IdU labelling, 25
+h post Ara-C treatment) used for fitting. We did not make additional
+out-of-sample comparisons in this case, though in-sample posterior
+predictive checks were still carried out (see later).
+
+Here\DIFaddbegin \DIFadd{, as expected, }\DIFaddend the proliferation and velocity profiles indicate that
+proliferation has resumed\DIFdelbegin \DIFdel{, as expected}\DIFdelend . The rates of proliferation appear to be lower
+than under fully healthy conditions, however, perhaps due to incomplete
+recovery (the initial condition being right at the beginning of the
+recovery period). The timing of the recovery of proliferation and the
+well-identified proliferation and velocity profiles inferred give no
+indication that any other mechanism is required to account for these
+data, however.
+
+\begin{figure}
+\centering
+\includegraphics{../figures/figures_to_include/AraC-recovery-prior-to-posterior-prolif-vel-legend.pdf}
+\caption{Simulated realisations from the prior (left) and posterior
+(right) distributions for proliferation profiles (top) and velocities
+(bottom) after recovery from Ara-C treatment (blue) as compared to no
+treatment (grey). The velocities and proliferation rates show \DIFdelbeginFL \DIFdelFL{a clear
+}\DIFdelendFL \DIFaddbeginFL \DIFaddFL{partial
+}\DIFaddendFL recovery towards healthy
+conditions\DIFdelbeginFL \DIFdelFL{, though not to the full
+level}\DIFdelendFL .\label{fig:AraC-recovery-prior-to-posterior-prolif-vel}}
+\end{figure}
+
+\subsection{Predictive checks under homeostatic (healthy)
+conditions}\label{predictive-checks-under-homeostatic-healthy-conditions}
+
+Fig \ref{fig:BrdU-prior-to-posterior-label} illustrates simulations from
+the predictive distributions corresponding to the prior and posterior
+parameter distributions of Fig
+\ref{fig:BrdU-prior-to-posterior-prolif-vel}. This enables a first
+self-consistency check - i.e.~can the model re-simulate data similar to
+\DIFdelbegin \DIFdel{the data }\DIFdelend \DIFaddbegin \DIFadd{that }\DIFaddend to which it was fitted {[}\DIFdelbegin \DIFdel{17, 70}\DIFdelend \DIFaddbegin \DIFadd{20, 58}\DIFaddend {]}\DIFdelbegin \DIFdel{. }\DIFdelend \DIFaddbegin \DIFadd{? }\DIFaddend If this is the case then we
+can (provisionally) trust the parameter estimates in the previous
+figure; if \DIFdelbegin \DIFdel{this was notthe case }\DIFdelend \DIFaddbegin \DIFadd{not, }\DIFaddend then the parameter estimates would be unreliable, no
+matter how well-determined they seem. \DIFdelbegin \DIFdel{Here }\DIFdelend \DIFaddbegin \DIFadd{In our case }\DIFaddend the model appears to
+adequately replicate the data used for fitting.
+
+\begin{figure}
+\centering
+\includegraphics{../figures/figures_to_include/BrdU-prior-to-posterior-label-legend.pdf}
+\caption{Simulated realisations from prior (top) and posterior (bottom)
+predictive distributions (grey) for label data at fitted times (120 min,
+360 min and 600 min i.e.~2 h, 6 h and 10 h). Actual data are indicated
+by black lines. Again the posterior distributions are much more
+constrained than the prior distributions, representing the gain in
+information from collecting (and fitting to) experimental data. The
+first profile in each panel is held as a constant initial condition in
+this example.\label{fig:BrdU-prior-to-posterior-label}}
+\end{figure}
+
+Fig \ref{fig:BrdU-future-realisations-1080-min} and Fig
+\ref{fig:BrdU-posterior-characteristics} illustrate two additional ways
+of visualising replicated datasets. The former visualises the label
+profile along the crypt-villus axis at the future unfitted/out-of-sample
+time 1080 min (18 h), while the latter visualises both fitted (120 min/2
+h, 360 min/6 h and 600 min/10 h) and unfitted/out-of-sample (1080 min/18
+h) predictions plotted in the characteristic plane \((t,x)\) in which
+the slopes along lines of constant colour should be inversely
+proportional to the migration velocities at that point, due to the
+(hyperbolic) nature of our `colour' equation (see e.g. {[}\DIFdelbegin \DIFdel{52}\DIFdelend \DIFaddbegin \DIFadd{59}\DIFaddend {]}). We
+have interpolated between the dotted grid lines. These figures, in
+combination with Fig \ref{fig:BrdU-prior-to-posterior-label} above,
+indicate that the model is capable of reliably reproducing the data to
+which it was fitted, as well as predicting key features of unfitted
+datasets such as the rate of movement of the front. On the other hand,
+there is clearly a greater misfit with the predicted rather than fitted
+data. In order to locate the possible source of misfit we considered
+various model residuals and error terms - see `Locating model misfit'
+below.
+
+\begin{figure}
+\centering
+\includegraphics{../figures/figures_to_include/BrdU-future-realisations-1080-min-legend.pdf}
+\caption{Simulated realisations from prior (left) and posterior (right)
+predictive distributions (grey) for label data at the unfitted
+(out-of-sample) time 1080 min (18 h). Actual data are indicated by black
+lines. The model appears to give reasonable predictions capturing the
+\DIFdelbeginFL \DIFdelFL{main effects}\DIFdelendFL \DIFaddbeginFL \DIFaddFL{key features}\DIFaddendFL , but there is also \DIFdelbeginFL \DIFdelFL{clearly }\DIFdelendFL some misfit to be explored
+further.\label{fig:BrdU-future-realisations-1080-min}}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics{../figures/figures_to_include/BrdU-posterior-characteristics.pdf}
+\caption{Actual (smoothed) data (left, black box) and one replication
+based on the model (right; plotting the latent/measurement-error-free
+process) as visualised in the characteristic plane. This has been
+discretised and interpolated between the dotted lines to facilitate fair
+but coarse-grained comparisons. The model structure implies that there
+should be lines of constant colour tracing out curves with slopes
+inversely proportional to the migration velocities at that point. The
+model again captures \DIFdelbeginFL \DIFdelFL{a number }\DIFdelendFL \DIFaddbeginFL \DIFaddFL{several }\DIFaddendFL of these key qualitative features, but \DIFdelbeginFL \DIFdelFL{also }\DIFdelendFL fits
+less well for the out-of-sample (above the horizontal gap at 600 min/10
+h) data. There is little variability in the latent model process and so
+only one replication is
+shown.\label{fig:BrdU-posterior-characteristics}}
+\end{figure}
+
+\subsection{Predictive checks under blocked proliferation
+conditions}\label{predictive-checks-under-blocked-proliferation-conditions}
+
+Here \DIFaddbegin \DIFadd{data from }\DIFaddend 1140 min (19 h; post IdU labelling) \DIFdelbegin \DIFdel{was }\DIFdelend \DIFaddbegin \DIFadd{were }\DIFaddend used as the
+initial \DIFdelbegin \DIFdel{condition }\DIFdelend \DIFaddbegin \DIFadd{conditions }\DIFaddend and 1500 min (25 h) used for fitting. 1260 min (21 h)
+and 1620 min (27 h) were used as out-of-sample (non-fitted) comparisons.
+Fig \ref{fig:AraC-posterior-label-all} is analogous to Fig
+\ref{fig:BrdU-prior-to-posterior-label} in the healthy case. In general
+all of the features up to 1620 min (27 h) in Fig
+\ref{fig:AraC-posterior-label-all}, and for both fitted and predicted
+times, \DIFdelbegin \DIFdel{appear to be }\DIFdelend \DIFaddbegin \DIFadd{are }\DIFaddend reasonably well captured. The fit at 1620 min is generally
+good, but perhaps worse than the other cases. This could be due to
+\DIFdelbegin \DIFdel{both }\DIFdelend errors in longer-time predictions and to the beginning of proliferation
+recovery\DIFdelbegin \DIFdel{. We explore both longer-time misfits and
+recovering proliferation conditions }\DIFdelend \DIFaddbegin \DIFadd{: we explore these alternatives }\DIFaddend in what follows.
+
+\begin{figure}
+\centering
+\includegraphics{../figures/figures_to_include/AraC-posterior-label-all-legend.pdf}
+\caption{Simulated realisations from posterior predictive distributions
+(grey) for label data at 1140 min (initial condition), 1500 min (fitted
+time) and at two out-of-sample/unfitted times (1260 and 1620 min). The
+posterior distributions appear to adequately capture the actual label
+data (black).\label{fig:AraC-posterior-label-all}}
+\end{figure}
+
+\subsection{Predictive checks under recovering proliferation
+conditions}\label{predictive-checks-under-recovering-proliferation-conditions}
+
+As discussed above, Ara-C is metabolised between 10-12 h post-treatment.
+The two times considered here, 1620 min and 2520 min, correspond to 10 h
+and 25 h post Ara-C treatment, respectively, i.e to the end of the
+effect and after the resumption of proliferation.
+
+Again, as expected, the label has resumed movement in concert with the
+resumption in proliferation. The model appears to fit reasonably well.
+
+\begin{figure}
+\centering
+\includegraphics{../figures/figures_to_include/AraC-recovery-prior-to-posterior-label-legend.pdf}
+\caption{Simulated realisations from posterior predictive distributions
+(grey) for label data at 1620 min (initial condition) and 2520 min
+(fitted). These indicate that proliferation has resumed, consistent with
+the time taken to metabolise Ara-C - see the main text for more
+detail.\label{fig:AraC-recovery-posterior-label-all}}
+\end{figure}
+
+\subsection{Locating model misfit}\label{locating-model-misfit}
+
+While the zeroth-order model behaves essentially as desired under
+experimental perturbation, and is likely capturing the essential
+features of interest, we observed some \DIFdelbegin \DIFdel{some }\DIFdelend minor model misfit. We used
+posterior predictive checks to unpick the contributions of the various
+model parts and determine the source(s) of misfit. This in turn
+motivated potential model improvements. These checks were carried out
+under baseline (healthy) conditions as we were more confident of the
+experimental effects under this scenario, but they can equally be
+carried out for the other datasets. Note, however, that time-varying
+effects are not expected to be as relevant under conditions of inhibited
+proliferation.
+
+Fig \ref{fig:BrdU-posterior-residuals} shows the following checks:
+measurement error as determined by subtracting a smoothed spline from
+the observed data (dark line) and comparing these to the results
+obtained by subtracting the process model from the simulated data
+(panels 1-4, moving left-to-right and top-to-bottom, showing fitted -
+120 min/2 h, 360 min/6 h and 600 min/10 h - and unfitted/out-of-sample -
+1080 min/18 h - times). This presentation follows the noise-checking
+approach in {[}\DIFdelbegin \DIFdel{72}\DIFdelend \DIFaddbegin \DIFadd{60}\DIFaddend {]}, as well as the general recommendations given in
+{[}\DIFdelbegin \DIFdel{17, 70}\DIFdelend \DIFaddbegin \DIFadd{20, 58}\DIFaddend {]}. Reliable interpretation of these as `true' measurement
+residuals depends on the validity of the normal approximation
+\ref{eq:likel-norma} since these expressions are not directly
+interpretable in terms of the discrete binomial model (see e.g. {[}\DIFdelbegin \DIFdel{17,
+70}\DIFdelend \DIFaddbegin \DIFadd{20,
+58}\DIFaddend {]}). These are also visualised in terms of the corresponding
+cumulative distributions in the middle panel (panel 5, following as
+above). Panels 6-9 show the differences between the underlying process
+model and the smoothed spline fitted to the data. As can be seen, the
+measurement model appears approximately valid at all times, while the
+process model appears to have non-zero error for the 1080 min sample. We
+consider this in more detail next.
+
+\begin{figure}
+\centering
+\includegraphics{../figures/figures_to_include/BrdU-posterior-residuals-legend.pdf}
+\caption{Model and data residual components. Panels 1-4, moving
+left-to-right and top-to-bottom, shows measurement error as determined
+by subtracting a smoothed spline from the observed data (dark line) and
+comparing this to the results obtained by subtracting the process model
+for fitted - 120, 360 and 600 mins - and unfitted/out-of-sample - 1080
+min - times from the realised data (grey). These measurement error
+distributions are also visualised in terms of the corresponding
+cumulative distributions in the middle panel (panel 5, following as
+above. Black - actual data, grey - model simulations). Panels 6-9 show
+the differences between realisations of the underlying process model and
+the smoothed spline fitted to the data. As can be seen across panels,
+the measurement model appears approximately valid at all times, while
+the process model appears to have non-zero error for the 1080 min
+sample. This observation is discussed in the
+text.\label{fig:BrdU-posterior-residuals}}
+\end{figure}
+
+\subsection{Possible model improvement and robustness - higher-order
+spatial
+effects}\label{possible-model-improvement-and-robustness---higher-order-spatial-effects}
+
+As discussed in the process model section above, the presence of
+cellular structure in the epithelial tissue means that higher-order
+spatial effects could be present. One way of deciding whether these are
+important is to consider the extent to which these may account for the
+minor misfit identified above, as opposed to other factors such as
+time-varying proliferation rates. To do this we considered both uniform
+percentage reductions of the original parameter estimates (approximating
+time-varying rates) and the inclusion of higher-order spatial terms.
+
+Fig \ref{fig:BrdU-comparison-diffusion-correction} gives an idea of the
+qualitative differences induced by including the higher-order spatial
+terms and those that could be induced by time-varying proliferation
+rates. This figure is based on the (healthy) 1080 min (18 h) data in
+which we found some indication of a process model error.
+
+We see that while the higher-order model appears to give a slightly
+better qualitative fit to the data, both the higher-order and
+lower-order models require similar reductions of the parameter values to
+quantitatively improve the fit to our out-of-sample data. The reduced
+parameter values shown in Fig
+\ref{fig:BrdU-comparison-diffusion-correction} correspond to a reduction
+of 20\%, which was chosen visually as a reduction accounting for the
+bulk of the misfit.
+
+Thus the key (yet relatively small) difference between the model and
+out-of-sample data is likely due to an effect other than finite-cell
+sizes; in this case it is likely due to time-variation in parameter
+values due to circadian rhythms (we have assumed steady-state parameter
+values). Other potential factors include label dilution or an unmodelled
+mixing phenomenon in the full two-dimensional case. We note however that
+these effects are small and appear to be important primarily for
+predicting much further ahead in time than the fitted data and the
+steady-state parameter assumption is likely valid for reasonable time
+intervals. This means that the more easily interpretable original model
+may be sufficient for many purposes.
+
+\begin{figure}
+\centering
+\includegraphics{../figures/figures_to_include/BrdU-comparison-diffusion-correction-legend.pdf}
+\caption{Comparison of the modified process model which includes
+higher-order spatial terms (blue) to the original model (grey, dashed),
+both at lowered proliferation rates (decreased 20\%), which is required
+for a better fit to the data. The original model at the original fitted
+proliferation rates is also shown (grey, solid). Although the model with
+higher-order spatial terms gives a better qualitative fit to the data
+for the same proliferation rates, it is clear that the dominant cause of
+misfit is better attributed to (time) varying proliferation rates (in
+the context of the present set of
+models).\label{fig:BrdU-comparison-diffusion-correction}}
+\end{figure}
+
+\section{Discussion}\label{discussion}
+
+Understanding the \DIFdelbegin \DIFdel{complicated }\DIFdelend \DIFaddbegin \DIFadd{intricate }\DIFaddend dynamics of the intestinal epithelium
+requires an interdisciplinary approach \DIFdelbegin \DIFdel{involving }\DIFdelend \DIFaddbegin \DIFadd{that integrates }\DIFaddend experimental
+measurements, mathematical and computational modelling, and statistical
+quantification of uncertainties. While a diverse range of mathematical
+models have been \DIFdelbegin \DIFdel{constructed }\DIFdelend \DIFaddbegin \DIFadd{proposed }\DIFaddend for epithelial cell and tissue dynamics
+(reviewed in {[}\DIFdelbegin \DIFdel{58, 59, 73--75}\DIFdelend \DIFaddbegin \DIFadd{51, 52, 61--63}\DIFaddend {]}), from compartment models to
+individual-based models to continuum models, we lack consistent and
+reproducible \DIFdelbegin \DIFdel{frameworks }\DIFdelend \DIFaddbegin \DIFadd{approaches }\DIFaddend for comparing models representing conjectured
+biological mechanisms both to each other and to experimental data (for
+an overview, see our review {[}\DIFdelbegin \DIFdel{49}\DIFdelend \DIFaddbegin \DIFadd{44}\DIFaddend {]}). These shortcomings may explain
+why questions such as the connection between proliferation and migration
+and its variation under experimental perturbations remain open
+\DIFdelbegin \DIFdel{, despite
+much investigation }\DIFdelend {[}8--14{]}.
+
+The aim of the present work was to acknowledge and confront these
+difficulties explicitly, and to present some initial constructive steps
+\DIFdelbegin \DIFdel{in }\DIFdelend \DIFaddbegin \DIFadd{towards }\DIFaddend establishing such a framework. To do this we carried out new
+experiments (described more fully in a companion paper {[}\DIFdelbegin \DIFdel{15}\DIFdelend \DIFaddbegin \DIFadd{18}\DIFaddend {]}) aimed
+at determining how \DIFaddbegin \DIFadd{cell }\DIFaddend proliferation rates, tissue growth and \DIFdelbegin \DIFdel{cellular
+}\DIFdelend \DIFaddbegin \DIFadd{cell
+}\DIFaddend migration rates are related in the intestinal epithelium under healthy,
+damaged (Ara-C treated) and recovering conditions. We performed BrdU/IdU
+cell-labelling experiments under these respective conditions. \DIFdelbegin \DIFdel{In
+considering how to best process these data and interpret them using
+mathematical models, we }\DIFdelend \DIFaddbegin \DIFadd{We }\DIFaddend then
+developed a probabilistic, hierarchical (conditional) \DIFdelbegin \DIFdel{framework}\DIFdelend \DIFaddbegin \DIFadd{model to process
+and interpret these data}\DIFaddend .
+
+Our hierarchical \DIFdelbegin \DIFdel{framework }\DIFdelend \DIFaddbegin \DIFadd{model }\DIFaddend provides a best-practice approach for \DIFdelbegin \DIFdel{systematically modelling }\DIFdelend \DIFaddbegin \DIFadd{describing
+}\DIFaddend and understanding the uncertainties that could lead to unreliable
+mechanistic conclusions - uncertainties in experimental measurement and
+treatment, difficult-to-compare mathematical models of underlying
+mechanisms, and unknown or unobserved parameters. Our approach was
+influenced by recognising the benefits that the hierarchical Bayesian
+approach has demonstrated in applications across a number of different
+disciplines (e.g.~in environmental and geophysical science as in {[}\DIFdelbegin \DIFdel{22,
+23}\DIFdelend \DIFaddbegin \DIFadd{64,
+65}\DIFaddend {]}; ecological modelling as in {[}\DIFdelbegin \DIFdel{24, 25}\DIFdelend \DIFaddbegin \DIFadd{66, 67}\DIFaddend {]}; and in Bayesian
+statistical modelling and inverse problems more generally as in
+{[}\DIFdelbegin \DIFdel{17--21, 26}\DIFdelend \DIFaddbegin \DIFadd{20--24, 68}\DIFaddend {]}). We also note that a hierarchical approach can have
+significant benefits outside the Bayesian framework (see for example the
+`extended likelihood' approach described in {[}\DIFdelbegin \DIFdel{27--29}\DIFdelend \DIFaddbegin \DIFadd{69--71}\DIFaddend {]}).
+
+The hierarchical approach \DIFdelbegin \DIFdel{has advantages not only in terms of providing
+a framework}\DIFdelend \DIFaddbegin \DIFadd{provides a framework, not only }\DIFaddend for combining
+disparate sources of uncertainty, but also \DIFdelbegin \DIFdel{as
+a framework }\DIFdelend for facilitating modelling
+derivations and relating discrete and continuous models. Though the
+resulting measurement, process and parameter models can \DIFdelbegin \DIFdel{or have all been}\DIFdelend \DIFaddbegin \DIFadd{be (or have
+been) }\DIFaddend derived by other means, as far as we are aware this particular
+perspective has not been systematically utilised in the \DIFdelbegin \DIFdel{same manner
+as considered here- at the very least it
+appears uncommon within the mathematical/systems/computational biology
+communities.
+Furthermore, in the main text we noted the connections of
+our conditional, probabilistic approach for relating discrete and
+continuous models to similar procedures in the numerical analysis
+literature. This raises exciting connections to the developing field of
+probabilistic numerical methods and computing }%DIFDELCMD < {[}%%%
+\DIFdel{76}%DIFDELCMD < {]}%%%
+\DIFdelend \DIFaddbegin \DIFadd{manner
+considered here}\DIFaddend .
+
+We also note the connection between the choice of a measurement model as
+required here (and/or process model error, and following e.g. {[}\DIFdelbegin \DIFdel{18--22,
+77}\DIFdelend \DIFaddbegin \DIFadd{21--24,
+64, 72}\DIFaddend {]}), and the development of approximate sampling and parameter
+fitting procedures, which are particularly useful for analytically
+difficult models. A key concern of the latter is the appropriate choice
+of summary statistics for constructing a `synthetic likelihood' {[}\DIFdelbegin \DIFdel{78}\DIFdelend \DIFaddbegin \DIFadd{73}\DIFaddend {]}
+or similarly-modified posterior target for Approximate Bayesian
+Computation (ABC) {[}\DIFdelbegin \DIFdel{79--81}\DIFdelend \DIFaddbegin \DIFadd{74--76}\DIFaddend {]}. This choice determines (implicitly or
+explicitly) in which ways a given model or set of models can be
+considered an `adequate' representation of the data, which features are
+considered to be reproducible and what the associated `noise' structure
+should be ({[}\DIFdelbegin \DIFdel{71}\DIFdelend \DIFaddbegin \DIFadd{77}\DIFaddend {]} presents an alternative approach to characterising
+data features and model adequacy). These issues are crucial in deciding
+how to model the complexity of epithelial cell and tissue dynamics.
+
+An important next step, as described above, would be to \DIFdelbegin \DIFdel{bring more
+}\DIFdelend \DIFaddbegin \DIFadd{consider other
+}\DIFaddend process model types \DIFdelbegin \DIFdel{into this framework }\DIFdelend and to evaluate and compare them under carefully
+modelled experimental conditions. Extensions incorporating other
+mechanical and/or cellular-level information (e.g. {[}11, 12{]}) into
+process models would provide a natural next step. Importantly, due to
+the separation between measurement and process model components, these
+more complex process models could be incorporated into our present
+framework simply by replacing our process model component with a new
+model, while retaining the same measurement model. Of course additional
+parameters would require additional prior assumptions, and if additional
+data features were of interest then these would need to be incorporated
+into a modified measurement model. The benefit of a hierarchical \DIFdelbegin \DIFdel{framework }\DIFdelend \DIFaddbegin \DIFadd{model
+}\DIFaddend is that it offers an explicit guide as to where such modifications
+should be incorporated.
+
+\DIFdelbegin \DIFdel{We also agree with the view expressed by }%DIFDELCMD < {[}%%%
+\DIFdel{17}%DIFDELCMD < {]} %%%
+\DIFdel{that the cycle,
+adopted here, of model construction, parameter estimation, (graphical)
+model checking and model expansion is typically more informative than
+`model selection' as traditionally understood - especially when this
+latter activity is based on Bayes factors or other assignments of single
+numerical quantities to complex models. We generally advocate
+understanding and comparing models in terms of predictive checks and
+identifying which features particular models capture well and which they
+miss. That is, we do not believe that there is much to gain from
+choosing one model as `best' - rather that we should understand in which
+respects our models are `useful' }%DIFDELCMD < {[}%%%
+\DIFdel{33, 34}%DIFDELCMD < {]}%%%
+\DIFdel{. Part of our goal here was
+to encourage more researchers to think in these terms and point out that
+the hierarchical approach has the potential to facilitate such analyses
+for a range of different model types.
+}%DIFDELCMD < 
+
+%DIFDELCMD < %%%
+\DIFdel{As a final methodological point, by making our code and data available,
+as well as leveraging already-available open-source scientific Python
+software, we open up our work to other researchers to build on.
+}%DIFDELCMD < 
+
+%DIFDELCMD < %%%
+\DIFdelend In summary, the main results established using the above \DIFdelbegin \DIFdel{framework }\DIFdelend \DIFaddbegin \DIFadd{approach }\DIFaddend were
+
+ \begin{itemize} 
+\tightlist
+\item
+  An adequate description of intestinal epithelial dynamics is
+  achievable using a model based on \DIFdelbegin \DIFdel{purely }\DIFdelend proliferation-driven growth \DIFaddbegin \DIFadd{alone;
+}\DIFaddend \item
+  This model is consistent with healthy, proliferation-inhibited (Ara-C
+  treated) and recovering conditions\DIFaddbegin \DIFadd{;
+}\DIFaddend \item
+  The measurement and process model errors can be reasonably
+  distinguished and checked separately\DIFaddbegin \DIFadd{;
+}\DIFaddend \item
+  \DIFdelbegin \DIFdel{This checking }\DIFdelend \DIFaddbegin \DIFadd{Checking }\DIFaddend indicates that much of the natural variability is
+  \DIFdelbegin \DIFdel{directly }\DIFdelend attributable to the \DIFaddbegin \DIFadd{data }\DIFaddend collection process and this process can be
+  modelled in a simple manner
+\item
+  Possible model errors can also be identified and proposed explanations
+  incorporated and tested within our \DIFdelbegin \DIFdel{framework, andthus }\DIFdelend \DIFaddbegin \DIFadd{model, and, thus, }\DIFaddend the proper
+  interpretation of experimental procedures is aided by using an
+  explicit mathematical model and its predictive simulations
+\item
+  Including finite-cell-size effects gives a slightly better qualitative
+  fit to experimental data, but the dominant sources of the long-time
+  misfits are likely due to some other factor such as (relatively
+  slowly) time-varying proliferation rates (e.g.~due to circadian
+  rhythms) or label dilution.
+ \end{itemize} 
+
+\section{Acknowledgements}\label{acknowledgements}
+
+This work was funded by the BBSRC-UK, project numbers BB/K018256/1,
+BB/K017578/1, BB/K017144/1 and BB/J004529/1 and the EPSRC-UK, project
+number EP/I017909/1.
+
+\nolinenumbers
+
+\section*{References}\label{references}
+\addcontentsline{toc}{section}{References}
+
+\hypertarget{refs}{}
+\hypertarget{ref-Wright1984-kw}{}
+1. Wright NA, Alison M (1984) The biology of epithelial cell
+populations. Oxford University Press, USA
+
+\hypertarget{ref-Radtke2005-dh}{}
+2. Radtke F, Clevers H (2005) Self-renewal and cancer of the gut: Two
+sides of a coin. Science 307:1904--1909
+
+\hypertarget{ref-Reuss2010-fn}{}
+3. Reuss L (2010) Epithelial transport. Comprehensive physiology
+
+\hypertarget{ref-Van_der_Flier2009-hw}{}
+4. van der Flier LG, Clevers H (2009) Stem cells, self-renewal, and
+differentiation in the intestinal epithelium. Annu Rev Physiol
+71:241--260
+
+\hypertarget{ref-Turner2009-ei}{}
+5. Turner JR (2009) Intestinal mucosal barrier function in health and
+disease. Nat Rev Immunol 9:799--809
+
+\hypertarget{ref-Marchiando2010-th}{}
+6. Marchiando AM, Graham WV, Turner JR (2010) Epithelial barriers in
+homeostasis and disease. Annu Rev Pathol 5:119--144
+
+\hypertarget{ref-Barker2014-xu}{}
+7. Barker N (2014) Adult intestinal stem cells: Critical drivers of
+epithelial homeostasis and regeneration. Nat Rev Mol Cell Biol 15:19--33
+
+\hypertarget{ref-Kaur1986-xq}{}
+8. Kaur P, Potten CS (1986) Cell migration velocities in the crypts of
+the small intestine after cytotoxic insult are not dependent on mitotic
+activity. Cell Tissue Kinet 19:601--610
+
+\hypertarget{ref-Kaur1986-je}{}
+9. Kaur P, Potten CS (1986) Circadian variation in migration velocity in
+small intestinal epithelium. Cell Tissue Kinet 19:591--599
+
+\hypertarget{ref-Tsubouchi1983-tk}{}
+10. Tsubouchi S (1983) Theoretical implications for cell migration
+through the crypt and the villus of labelling studies conducted at each
+position within the crypt. Cell Tissue Kinet 16:441--456
+
+\hypertarget{ref-Dunn2013-tg}{}
+11. Dunn S-J, Näthke IS, Osborne JM (2013) Computational models reveal a
+passive mechanism for cell migration in the crypt. PLoS One 8:e80516
+
+\hypertarget{ref-Meineke2001-xi}{}
+12. Meineke FA, Potten CS, Loeffler M (2001) Cell migration and
+organization in the intestinal crypt using a lattice-free model. Cell
+Prolif 34:253--266
+
+\hypertarget{ref-Loeffler1986-ej}{}
+13. Loeffler M, Stein R, Wichmann HE, Potten CS, Kaur P, Chwalinski S
+(1986) Intestinal cell proliferation. I. A comprehensive model of
+steady-state proliferation in the crypt. Cell Tissue Kinet 19:627--645
+
+\hypertarget{ref-Loeffler1988-zb}{}
+14. Loeffler M, Potten CS, Paulus U, Glatzer J, Chwalinski S (1988)
+Intestinal crypt proliferation. II. Computer modelling of mitotic index
+data provides further evidence for lateral and vertical cell migration
+in the absence of mitotic activity. Cell Tissue Kinet 21:247--258
+
+\DIFdelbegin %DIFDELCMD < \hypertarget{ref-Parker2016-jf}{}
+%DIFDELCMD < %%%
+\DIFdelend \DIFaddbegin \hypertarget{ref-Vyshemirsky2008-gh}{}
+\DIFaddend 15. \DIFaddbegin \DIFadd{Vyshemirsky V, Girolami MA (2008) Bayesian ranking of biochemical
+system models. Bioinformatics 24:833--839
+}
+
+\hypertarget{ref-Kirk2013-cd}{}
+\DIFadd{16. Kirk P, Thorne T, Stumpf MP (2013) Model selection in systems and
+synthetic biology. Current opinion in biotechnology 24:767--774
+}
+
+\hypertarget{ref-Weavers2016-ab}{}
+\DIFadd{17. Weavers H, Liepe J, Sim A, Wood W, Martin P, Stumpf MP (2016)
+Systems analysis of the dynamic inflammatory response to tissue damage
+reveals spatiotemporal properties of the wound attractant gradient.
+Current Biology 26:1975--1989
+}
+
+\hypertarget{ref-Parker2016-jf}{}
+\DIFadd{18. }\DIFaddend Parker A, Maclaren OJ, Fletcher AG, Muraro D, Kreuzaler PA, Byrne
+HM, Maini PK, Watson AJM, Pin C (2016) Cell proliferation within small
+intestinal crypts is the principal driving force for cell migration on
+villi. The FASEB Journal; published ahead of print October 20, 2016,
+doi:10.1096/fj.201601002
+
+\hypertarget{ref-Bernardo2009-uw}{}
+\DIFdelbegin \DIFdel{16. }\DIFdelend \DIFaddbegin \DIFadd{19. }\DIFaddend Bernardo JM, Smith AFM (2009) Bayesian theory. John Wiley \& Sons
+
+\hypertarget{ref-Gelman2013-id}{}
+\DIFdelbegin \DIFdel{17. }\DIFdelend \DIFaddbegin \DIFadd{20. }\DIFaddend Gelman A, Carlin JB, Stern HS, Dunson DB, Vehtari A, Rubin DB (2013)
+Bayesian data analysis, third edition. Taylor \& Francis
+
+\hypertarget{ref-Tarantola2005-sv}{}
+\DIFdelbegin \DIFdel{18. }\DIFdelend \DIFaddbegin \DIFadd{21. }\DIFaddend Tarantola A (2005) Inverse problem theory and methods for model
+parameter estimation. SIAM
+
+\hypertarget{ref-Berliner1996-xr}{}
+\DIFdelbegin \DIFdel{19. }\DIFdelend \DIFaddbegin \DIFadd{22. }\DIFaddend Berliner LM (1996) Hierarchical Bayesian time series models. In:
+Maximum entropy and Bayesian methods. Springer Netherlands, pp 15--22
+
+\hypertarget{ref-Cressie2011-sw}{}
+\DIFdelbegin \DIFdel{20. }\DIFdelend \DIFaddbegin \DIFadd{23. }\DIFaddend Cressie N, Wikle CK (2011) Statistics for spatio-temporal data. John
+Wiley \& Sons
+
+\hypertarget{ref-Wikle2015-jq}{}
+\DIFdelbegin \DIFdel{21. }\DIFdelend \DIFaddbegin \DIFadd{24. }\DIFaddend Wikle CK (2015) Modern perspectives on statistics for
+spatio-temporal data. WIREs Comput Stat 7:86--98
+
+\DIFdelbegin %DIFDELCMD < \hypertarget{ref-Berliner2003-yl}{}
+%DIFDELCMD < %%%
+\DIFdel{22. Berliner LM (2003) Physical-statistical modeling in geophysics. J.
+Geophys. Res. 108:
+}%DIFDELCMD < 
+
+%DIFDELCMD < \hypertarget{ref-Wikle2003-je}{}
+%DIFDELCMD < %%%
+\DIFdel{23. Wikle CK (2003) Hierarchical models in environmental science. Int
+Stat Rev 71:181--199
+}%DIFDELCMD < 
+
+%DIFDELCMD < \hypertarget{ref-Cressie2009-wy}{}
+%DIFDELCMD < %%%
+\DIFdel{24. Cressie N, Calder CA, Clark JS, Ver Hoef JM, Wikle CK (2009)
+Accounting for uncertainty in ecological analysis: The strengths and
+limitations of hierarchical statistical modeling. Ecol Appl 19:553--570
+}%DIFDELCMD < 
+
+%DIFDELCMD < \hypertarget{ref-Ogle2009-cb}{}
+%DIFDELCMD < %%%
+\DIFdel{25. Ogle K (2009) Hierarchical Bayesian statistics: Merging experimental
+and modeling approaches in ecology. Ecol Appl 19:577--581
+}%DIFDELCMD < 
+
+%DIFDELCMD < \hypertarget{ref-Blei2014-dh}{}
+%DIFDELCMD < %%%
+\DIFdel{26. Blei DM (2014) Build, compute, critique, repeat: Data analysis with
+latent variable models. Annual Review of Statistics and Its Application
+1:203--232
+}%DIFDELCMD < 
+
+%DIFDELCMD < \hypertarget{ref-Pawitan2001-xm}{}
+%DIFDELCMD < %%%
+\DIFdel{27. Pawitan Y (2001) In all likelihood: Statistical modelling and
+inference using likelihood. OUP Oxford
+}%DIFDELCMD < 
+
+%DIFDELCMD < \hypertarget{ref-Pawitan2016-cz}{}
+%DIFDELCMD < %%%
+\DIFdel{28. Pawitan Y, Lee Y (2016) Wallet game: Probability, likelihood and
+extended likelihood. Am Stat 0:1--7
+}%DIFDELCMD < 
+
+%DIFDELCMD < \hypertarget{ref-Lee2006-mr}{}
+%DIFDELCMD < %%%
+\DIFdel{29. Lee Y, Nelder JA, Pawitan Y (2006) Generalized linear models with
+random effects: Unified analysis via h-likelihood. CRC Press
+}%DIFDELCMD < 
+
+%DIFDELCMD < %%%
+\DIFdelend \hypertarget{ref-Dawid2002-ry}{}
+\DIFdelbegin \DIFdel{30. }\DIFdelend \DIFaddbegin \DIFadd{25. }\DIFaddend Dawid AP (2002) Influence diagrams for causal modelling and
+inference. Int Stat Rev 70:161--189
+
+\hypertarget{ref-Dawid2010-ab}{}
+\DIFdelbegin \DIFdel{31. }\DIFdelend \DIFaddbegin \DIFadd{26. }\DIFaddend Dawid PA (2010) Seeing and doing: The Pearlian synthesis. In: Rina
+Dechter, Hector Geffner, and Joseph Y. Halpern (ed) Heuristics,
+probability and causality: A tribute to judea pearl. College
+Publications London, pp 309--325
+
+\hypertarget{ref-Dawid2010-yg}{}
+\DIFdelbegin \DIFdel{32. }\DIFdelend \DIFaddbegin \DIFadd{27. }\DIFaddend Dawid PA (2010) Beware of the DAG! NIPS Causality: Objectives and
+Assessment 6:59--86
+
+\hypertarget{ref-Box1976-he}{}
+\DIFdelbegin \DIFdel{33. }\DIFdelend \DIFaddbegin \DIFadd{28. }\DIFaddend Box GEP (1976) Science and statistics. J Am Stat Assoc 71:791--799
+
+\hypertarget{ref-Box1980-ch}{}
+\DIFdelbegin \DIFdel{34. }\DIFdelend \DIFaddbegin \DIFadd{29. }\DIFaddend Box GEP (1980) Sampling and Bayes' inference in scientific modelling
+and robustness. J R Stat Soc Ser A 143:383--430
+
+\hypertarget{ref-Evans2015-kg}{}
+\DIFdelbegin \DIFdel{35. }\DIFdelend \DIFaddbegin \DIFadd{30. }\DIFaddend Evans M (2015) Measuring statistical evidence using relative belief.
+CRC Press
+
+\hypertarget{ref-Gelman2013-wc}{}
+\DIFdelbegin \DIFdel{36. }\DIFdelend \DIFaddbegin \DIFadd{31. }\DIFaddend Gelman A, Shalizi CR (2013) Philosophy and the practice of Bayesian
+statistics. Br J Math Stat Psychol 66:8--38
+
+\hypertarget{ref-Kozar2013-mr}{}
+\DIFdelbegin \DIFdel{37. }\DIFdelend \DIFaddbegin \DIFadd{32. }\DIFaddend Kozar S, Morrissey E, Nicholson AM, Heijden M van der, Zecchini HI,
+Kemp R, Tavaré S, Vermeulen L, Winton DJ (2013) Continuous clonal
+labeling reveals small numbers of functional stem cells in intestinal
+crypts and adenomas. Cell Stem Cell 13:626--633
+
+\hypertarget{ref-Vermeulen2013-ew}{}
+\DIFdelbegin \DIFdel{38. }\DIFdelend \DIFaddbegin \DIFadd{33. }\DIFaddend Vermeulen L, Morrissey E, Heijden M van der, Nicholson AM, Sottoriva
+A, Buczacki S, Kemp R, Tavaré S, Winton DJ (2013) Defining stem cell
+dynamics in models of intestinal tumor initiation. Science 342:995--998
+
+\hypertarget{ref-Lopez-Garcia2010-bv}{}
+\DIFdelbegin \DIFdel{39. }\DIFdelend \DIFaddbegin \DIFadd{34. }\DIFaddend Lopez-Garcia C, Klein AM, Simons BD, Winton DJ (2010) Intestinal
+stem cell replacement follows a pattern of neutral drift. Science
+330:822--825
+
+\hypertarget{ref-Meineke2001-na}{}
+\DIFdelbegin \DIFdel{40. }\DIFdelend \DIFaddbegin \DIFadd{35. }\DIFaddend Meineke FA, Potten CS, Loeffler M (2001) Cell migration and
+organization in the intestinal crypt using a lattice-free model. Cell
+Prolif 34:253--266
+
+\hypertarget{ref-Potten1988-tq}{}
+\DIFdelbegin \DIFdel{41. }\DIFdelend \DIFaddbegin \DIFadd{36. }\DIFaddend Potten CS, Roberts SA, Chwalinski S, Loeffler M, Paulus U (1988)
+Scoring mitotic activity in longitudinal sections of crypts of the small
+intestine. Cell Tissue Kinet 21:231--246
+
+\hypertarget{ref-Pearl2009-qh}{}
+\DIFdelbegin \DIFdel{42. }\DIFdelend \DIFaddbegin \DIFadd{37. }\DIFaddend Pearl J (2009) Causality. Cambridge University Press
+
+\hypertarget{ref-Pearl2009-jp}{}
+\DIFdelbegin \DIFdel{43. }\DIFdelend \DIFaddbegin \DIFadd{38. }\DIFaddend Pearl J (2009) Causal inference in statistics: An overview. Stat
+Surv 3:96--146
+
+\hypertarget{ref-Dawid1979-gu}{}
+\DIFdelbegin \DIFdel{44. }\DIFdelend \DIFaddbegin \DIFadd{39. }\DIFaddend Dawid PA (1979) Conditional independence in statistical theory. J R
+Stat Soc Series B Stat Methodol 41:1--31
+
+\hypertarget{ref-Woodward2003-oz}{}
+\DIFdelbegin \DIFdel{45. }\DIFdelend \DIFaddbegin \DIFadd{40. }\DIFaddend Woodward J (2003) Making things happen: A theory of causal
+explanation. Oxford University Press
+
+\hypertarget{ref-Woodward1997-dk}{}
+\DIFdelbegin \DIFdel{46. }\DIFdelend \DIFaddbegin \DIFadd{41. }\DIFaddend Woodward J (1997) Explanation, invariance, and intervention. Philos
+Sci 64:S26--S41
+
+\hypertarget{ref-Spirtes2000-zd}{}
+\DIFdelbegin \DIFdel{47. }\DIFdelend \DIFaddbegin \DIFadd{42. }\DIFaddend Spirtes P, Glymour CN, Scheines R (2000) Causation, prediction, and
+search. MIT Press
+
+\hypertarget{ref-Van_Kampen1992-ik}{}
+\DIFdelbegin \DIFdel{48. }\DIFdelend \DIFaddbegin \DIFadd{43. }\DIFaddend Van Kampen NG (1992) Stochastic processes in physics and chemistry.
+Elsevier
+
+\hypertarget{ref-Maclaren2015-be}{}
+\DIFdelbegin \DIFdel{49. }\DIFdelend \DIFaddbegin \DIFadd{44. }\DIFaddend Maclaren OJ, Byrne HM, Fletcher AG, Maini PK (2015) Models,
+measurement and inference in epithelial tissue dynamics. Math Biosci Eng
+12:1321--1340
+
+\DIFdelbegin %DIFDELCMD < \hypertarget{ref-iglesias2014-uq}{}
+%DIFDELCMD < %%%
+\DIFdel{50. Iglesias M, Stuart A (2014) Inverse problems and uncerrainty
+quantification. SIAM news (july/august)
+}%DIFDELCMD < 
+
+%DIFDELCMD < %%%
+\DIFdelend \hypertarget{ref-Wilkinson2011-wh}{}
+\DIFdelbegin \DIFdel{51. }\DIFdelend \DIFaddbegin \DIFadd{45. }\DIFaddend Wilkinson DJ (2011) Stochastic modelling for systems biology. CRC
+Press
+
+\DIFdelbegin %DIFDELCMD < \hypertarget{ref-LeVeque2002-eq}{}
+%DIFDELCMD < %%%
+\DIFdel{52. LeVeque RJ (2002) Finite volume methods for hyperbolic problems.
+Cambridge University Press
+}%DIFDELCMD < 
+
+%DIFDELCMD < \hypertarget{ref-Askes2005-cd}{}
+%DIFDELCMD < %%%
+\DIFdel{53. Askes H, Metrikine AV (2005) Higher-order continua derived from
+discrete media: Continualisation aspects and boundary conditions. Int J
+Solids Struct 42:187--202
+}%DIFDELCMD < 
+
+%DIFDELCMD < %%%
+\DIFdelend \hypertarget{ref-Baker2010-ne}{}
+\DIFdelbegin \DIFdel{54. }\DIFdelend \DIFaddbegin \DIFadd{46. }\DIFaddend Baker RE, Yates CA, Erban R (2010) From microscopic to macroscopic
+descriptions of cell migration on growing domains. Bull Math Biol
+72:719--762
+
+\hypertarget{ref-Hywood2013-zf}{}
+\DIFdelbegin \DIFdel{55. }\DIFdelend \DIFaddbegin \DIFadd{47. }\DIFaddend Hywood JD, Hackett-Jones EJ, Landman KA (2013) Modeling biological
+tissue growth: Discrete to continuum representations. Phys Rev E Stat
+Nonlin Soft Matter Phys 88:032704
+
+\hypertarget{ref-Fozard2010-hd}{}
+\DIFdelbegin \DIFdel{56. }\DIFdelend \DIFaddbegin \DIFadd{48. }\DIFaddend Fozard JA, Byrne HM, Jensen OE, King JR (2010) Continuum
+approximations of individual-based models for epithelial monolayers.
+Math Med Biol 27:39--74
+
+\hypertarget{ref-Murray2009-zg}{}
+\DIFdelbegin \DIFdel{57. }\DIFdelend \DIFaddbegin \DIFadd{49. }\DIFaddend Murray PJ, Edwards CM, Tindall MJ, Maini PK (2009) From a discrete
+to a continuum model of cell dynamics in one dimension. Phys Rev E Stat
+Nonlin Soft Matter Phys 80:031912
+
+\DIFaddbegin \hypertarget{ref-Rasmussen2005-ef}{}
+\DIFadd{50. Rasmussen C, Williams C (2005) Gaussian processes for machine
+learning. MIT
+}
+
+\DIFaddend \hypertarget{ref-Johnston2007-pq}{}
+\DIFdelbegin \DIFdel{58. }\DIFdelend \DIFaddbegin \DIFadd{51. }\DIFaddend Johnston MD, Edwards CM, Bodmer WF, Maini PK, Chapman SJ (2007)
+Examples of mathematical modeling: Tales from the crypt. Cell Cycle
+6:2106--2112
+
+\hypertarget{ref-Carulli2014-bd}{}
+\DIFdelbegin \DIFdel{59. }\DIFdelend \DIFaddbegin \DIFadd{52. }\DIFaddend Carulli AJ, Samuelson LC, Schnell S (2014) Unraveling intestinal
+stem cell behavior with models of crypt dynamics. Integr Biol 6:243--257
+
+\hypertarget{ref-Robert2013-gx}{}
+\DIFdelbegin \DIFdel{60. }\DIFdelend \DIFaddbegin \DIFadd{53. }\DIFaddend Robert C, Casella G (2013) Monte carlo statistical methods. Springer
+Science \& Business Media
+
+\DIFdelbegin %DIFDELCMD < \hypertarget{ref-Foreman-Mackey2013-mb}{}
+%DIFDELCMD < %%%
+\DIFdel{61. Foreman-Mackey D, Hogg DW, Lang D, Goodman J (2013) Emcee: The MCMC
+hammer. Publications of the Astronomical Society of the Pacific
+}%DIFDELCMD < 
+
+%DIFDELCMD < %%%
+\DIFdelend \hypertarget{ref-Ketcheson2012-od}{}
+\DIFdelbegin \DIFdel{62. }\DIFdelend \DIFaddbegin \DIFadd{54. }\DIFaddend Ketcheson DI, Mandli K, Ahmadia AJ, Alghamdi A, Luna MQ de, Parsani
+M, Knepley MG, Emmett M (2012) PyClaw: Accessible, extensible, scalable
+tools for wave propagation problems. SIAM J Sci Comput 34:C210--C231
+
+\hypertarget{ref-Pyclaw2014-py}{}
+\DIFdelbegin \DIFdel{63. }\DIFdelend \DIFaddbegin \DIFadd{55. }\DIFaddend Mandli KT, Ketcheson DI, others (2014) PyClaw software.
+
+\hypertarget{ref-Clawpack2014-cs}{}
+\DIFdelbegin \DIFdel{64. }\DIFdelend \DIFaddbegin \DIFadd{56. }\DIFaddend Clawpack Development Team (2014) Clawpack software.
+
+\hypertarget{ref-Guyer2009-sq}{}
+\DIFdelbegin \DIFdel{65. }\DIFdelend \DIFaddbegin \DIFadd{57. }\DIFaddend Guyer JE, Wheeler D, Warren JA (2009) FiPy: Partial differential
+equations with python. Comput. Sci. Eng.
+
+\DIFdelbegin %DIFDELCMD < \hypertarget{ref-Royall1997-ai}{}
+%DIFDELCMD < %%%
+\DIFdel{66. Royall R (1997) Statistical evidence: A likelihood paradigm. CRC
+Press
+}%DIFDELCMD < 
+
+%DIFDELCMD < \hypertarget{ref-Mayo2014-pz}{}
+%DIFDELCMD < %%%
+\DIFdel{67. Mayo DG (2014) On the birnbaum argument for the strong likelihood
+principle. Stat Sci 29:227--239
+}%DIFDELCMD < 
+
+%DIFDELCMD < \hypertarget{ref-Evans2014-gn}{}
+%DIFDELCMD < %%%
+\DIFdel{68. Evans M (2014) Discussion of ``on the birnbaum argument for the
+strong likelihood principle''. Stat Sci 29:242--246
+}%DIFDELCMD < 
+
+%DIFDELCMD < \hypertarget{ref-Taper2016-la}{}
+%DIFDELCMD < %%%
+\DIFdel{69. Taper ML, Ponciano JM (2016) Evidential statistics as a statistical
+modern synthesis to support 21st century science. Popul Ecol 58:9--29
+}%DIFDELCMD < 
+
+%DIFDELCMD < %%%
+\DIFdelend \hypertarget{ref-Gelman2004-bk}{}
+\DIFdelbegin \DIFdel{70. }\DIFdelend \DIFaddbegin \DIFadd{58. }\DIFaddend Gelman A (2004) Exploratory data analysis for complex models. J
+Comput Graph Stat 13:755--779
+
+\DIFdelbegin %DIFDELCMD < \hypertarget{ref-Davies2014-dz}{}
+%DIFDELCMD < %%%
+\DIFdel{71. Davies PL (2014) Data analysis and approximate models: Model choice,
+Location-Scale, analysis of variance, nonparametric regression and image
+analysis.
+CRC }\DIFdelend \DIFaddbegin \hypertarget{ref-LeVeque2002-eq}{}
+\DIFadd{59. LeVeque RJ (2002) Finite volume methods for hyperbolic problems.
+Cambridge University }\DIFaddend Press
+
+\hypertarget{ref-Aguilar2015-um}{}
+\DIFdelbegin \DIFdel{72. }\DIFdelend \DIFaddbegin \DIFadd{60. }\DIFaddend Aguilar O, Allmaras M, Bangerth W, Tenorio L (2015) Statistics of
+parameter estimates: A concrete example. SIAM Rev 57:131--149
+
+\hypertarget{ref-Kershaw2013-jb}{}
+\DIFdelbegin \DIFdel{73. }\DIFdelend \DIFaddbegin \DIFadd{61. }\DIFaddend Kershaw SK, Byrne HM, Gavaghan DJ, Osborne JM (2013) Colorectal
+cancer through simulation and experiment. IET Syst Biol 7:57--73
+
+\hypertarget{ref-De_Matteis2013-zo}{}
+\DIFdelbegin \DIFdel{74. }\DIFdelend \DIFaddbegin \DIFadd{62. }\DIFaddend De Matteis G, Graudenzi A, Antoniotti M (2013) A review of spatial
+computational models for multi-cellular systems, with regard to
+intestinal crypts and colorectal cancer development. J Math Biol
+66:1409--1462
+
+\hypertarget{ref-Fletcher2015-yc}{}
+\DIFdelbegin \DIFdel{75. }\DIFdelend \DIFaddbegin \DIFadd{63. }\DIFaddend Fletcher AG, Murray PJ, Maini PK (2015) Multiscale modelling of
+intestinal crypt organization and carcinogenesis. Math Models Methods
+Appl Sci 25:2563--2585
+
+\DIFdelbegin %DIFDELCMD < \hypertarget{ref-Hennig2015-im}{}
+%DIFDELCMD < %%%
+\DIFdel{76. Hennig P, Osborne MA, Girolami M (2015)
+Probabilistic numerics and
+uncertainty in computations. Proc Math Phys Eng Sci 471:20150142
+}\DIFdelend \DIFaddbegin \hypertarget{ref-Berliner2003-yl}{}
+\DIFadd{64. Berliner LM (2003) Physical-statistical modeling in geophysics. J.
+Geophys. Res. 108:
+}\DIFaddend 
+
+\DIFaddbegin \hypertarget{ref-Wikle2003-je}{}
+\DIFadd{65. Wikle CK (2003) Hierarchical models in environmental science. Int
+Stat Rev 71:181--199
+}
+
+\hypertarget{ref-Cressie2009-wy}{}
+\DIFadd{66. Cressie N, Calder CA, Clark JS, Ver Hoef JM, Wikle CK (2009)
+Accounting for uncertainty in ecological analysis: The strengths and
+limitations of hierarchical statistical modeling. Ecol Appl 19:553--570
+}
+
+\hypertarget{ref-Ogle2009-cb}{}
+\DIFadd{67. Ogle K (2009) Hierarchical Bayesian statistics: Merging experimental
+and modeling approaches in ecology. Ecol Appl 19:577--581
+}
+
+\hypertarget{ref-Blei2014-dh}{}
+\DIFadd{68. Blei DM (2014) Build, compute, critique, repeat: Data analysis with
+latent variable models. Annual Review of Statistics and Its Application
+1:203--232
+}
+
+\hypertarget{ref-Pawitan2001-xm}{}
+\DIFadd{69. Pawitan Y (2001) In all likelihood: Statistical modelling and
+inference using likelihood. OUP Oxford
+}
+
+\hypertarget{ref-Pawitan2016-cz}{}
+\DIFadd{70. Pawitan Y, Lee Y (2016) Wallet game: Probability, likelihood and
+extended likelihood. Am Stat 0:1--7
+}
+
+\hypertarget{ref-Lee2006-mr}{}
+\DIFadd{71. Lee Y, Nelder JA, Pawitan Y (2006) Generalized linear models with
+random effects: Unified analysis via h-likelihood. CRC Press
+}
+
+\DIFaddend \hypertarget{ref-Mosegaard2002-lx}{}
+\DIFdelbegin \DIFdel{77. }\DIFdelend \DIFaddbegin \DIFadd{72. }\DIFaddend Mosegaard K, Tarantola A (2002) Probabilistic approach to inverse
+problems. International Geophysics Series 81:237--268
+
+\hypertarget{ref-Wood2010-hp}{}
+\DIFdelbegin \DIFdel{78. }\DIFdelend \DIFaddbegin \DIFadd{73. }\DIFaddend Wood SN (2010) Statistical inference for noisy nonlinear ecological
+dynamic systems. Nature 466:1102--1104
+
+\hypertarget{ref-Marin2012-fd}{}
+\DIFdelbegin \DIFdel{79. }\DIFdelend \DIFaddbegin \DIFadd{74. }\DIFaddend Marin J-M, Pudlo P, Robert CP, Ryder RJ (2012) Approximate Bayesian
+computational methods. Stat Comput 22:1167--1180
+
+\hypertarget{ref-Wilkinson2013-rs}{}
+\DIFdelbegin \DIFdel{80. }\DIFdelend \DIFaddbegin \DIFadd{75. }\DIFaddend Wilkinson RD (2013) Approximate Bayesian computation (ABC) gives
+exact results under the assumption of model error. Stat Appl Genet Mol
+Biol 12:129--141
+
+\hypertarget{ref-Ratmann2009-de}{}
+\DIFdelbegin \DIFdel{81. }\DIFdelend \DIFaddbegin \DIFadd{76. }\DIFaddend Ratmann O, Andrieu C, Wiuf C, Richardson S (2009) Model criticism
+based on likelihood-free inference, with an application to protein
+network evolution. Proc Natl Acad Sci U S A 106:10576--10581
+\DIFaddbegin 
+
+\hypertarget{ref-Davies2014-dz}{}
+\DIFadd{77. Davies PL (2014) Data analysis and approximate models: Model choice,
+Location-Scale, analysis of variance, nonparametric regression and image
+analysis. CRC Press
+}\DIFaddend 
+
+
+
+\end{document}

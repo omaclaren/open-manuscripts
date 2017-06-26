@@ -9,3 +9,4 @@ pandoc --filter pandoc-fignos --filter pandoc-eqnos --filter pandoc-citeproc --d
 
 pandoc --filter pandoc-fignos --filter pandoc-eqnos --filter pandoc-citeproc --data-dir=$DATADIR --latex-engine=xelatex supplementary-information.md -o ../manuscript-pdf/supplementary-information.pdf
 
+
