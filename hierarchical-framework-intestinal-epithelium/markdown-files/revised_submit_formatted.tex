@@ -4,7 +4,7 @@
 \usepackage{changepage}
 
 % OLIVER: The next line should be uncommented, but generates an error at present
-%\usepackage[utf8]{inputenc}
+\usepackage[utf8]{inputenc}
 
 \usepackage{textcomp}
 \usepackage{marvosym}
@@ -128,7 +128,7 @@
 \setlength{\parskip}{6pt plus 2pt minus 1pt}
 \setlength{\emergencystretch}{3em}  % prevent overfull lines
 \setcounter{secnumdepth}{0}
-\usepackage{unicode-math}
+%\usepackage{unicode-math}
 \usepackage{fncylab}
 \usepackage[right]{lineno}
 \usepackage{tikz-cd}
@@ -150,9 +150,9 @@ dynamics of the intestinal epithelium}
 }
 \newline
 \\
-O.J. Maclaren\(^1\)*, A. Parker\(^2\), C. Pin\(^2\), S.R.
-Carding\(^{2,3}\), A.J.M. Watson\(^{2,3}\), A.G. Fletcher\(^{4,5}\),
-H.M. Byrne\(^6\) and P.K. Maini\(^6\)
+Oliver J. Maclaren\(^1\)*, Aim\'ee Parker\(^2\), Carmen Pin\(^2\), Simon R.
+Carding\(^{2,3}\), Alastair J.M. Watson\(^{2,3}\), Alexander G. Fletcher\(^{4,5}\),
+Helen M. Byrne\(^6\) and Philip K. Maini\(^6\)
 \end{flushleft}
 
 
@@ -323,10 +323,10 @@ likely relatively slow, time-varying proliferation rates (e.g.~due to
 circadian rhythms). In summary, a primarily proliferation-driven model
 appears adequate for predictions over moderate time-scales.
 
-\section{Materials and methods I: Experimental treatments and data
-processing}\label{materials-and-methods-i-experimental-treatments-and-data-processing}
+\section{Materials and methods}\label{materials-and-methods}
+\subsection{Experimental treatments and data processing}\label{materials-and-methods-i-exp}
 
-\subsection{Homeostasis mouse model}\label{homeostasis-mouse-model}
+\subsubsection{Homeostasis mouse model}\label{homeostasis-mouse-model}
 
 To estimate intestinal epithelial cell proliferation and migration rates
 under normal, homeostatic conditions in healthy mice, we used standard
@@ -343,9 +343,9 @@ and obtained from one-cell thick sections. All strips in which the base
 of the crypt and the tip of the villus were clearly observed were
 considered. All sides of the crypt that were visible and connected to
 entire villi were analysed. A typical image from those analysed in
-{[}18{]} is shown in Supplementary Figure 4.
+{[}18{]} is shown in Fig D in S1 Supplementary information.
 
-\subsection{Blocked-proliferation mouse
+\subsubsection{Blocked-proliferation mouse
 model}\label{blocked-proliferation-mouse-model}
 
 To assess the effects of proliferation inhibition on crypt/villus
@@ -365,7 +365,7 @@ of BrdU (S-phase) and phospho-Histone H3 (pH3) staining (M-phase) in
 longitudinal sections of small intestine (again, see {[}18{]} for full
 details).
 
-\subsection{Recovering-proliferation mouse
+\subsubsection{Recovering-proliferation mouse
 model}\label{recovering-proliferation-mouse-model}
 
 The above Ara-C treatment effect was observed to last for at least 10h
@@ -374,7 +374,7 @@ obtained 18h (1080 min) post-Ara-C treatment. We hence considered
 samples collected at least 10h post-Ara-C treatment as corresponding to
 `recovering-proliferation' conditions.
 
-\subsection{Data processing: reference grid and key observable
+\subsubsection{Data processing: reference grid and key observable
 features}\label{data-processing-reference-grid-and-key-observable-features}
 
 To relate experimental measurements to the mechanistic models discussed
@@ -422,14 +422,13 @@ We did not consider this additional complexity in the present work, and
 so this complication should be kept in mind when interpreting the
 results.
 
-\section{Materials and methods II: Mathematical
-model}\label{materials-and-methods-ii-mathematical-model}
+\subsection{Mathematical model}\label{materials-and-methods-ii-mathematical-model}
 
 Our hierarchical probability model was constructed on the basis of
 conditional probability assumptions. These allowed us to factor out a
 measurement model, a mechanistic model and a parameter model.
 
-\subsection{Overall hierarchical
+\subsubsection{Overall hierarchical
 structure}\label{overall-hierarchical-structure}
 
 Our model structure consisted of a full joint distribution, conditioned
@@ -492,7 +491,7 @@ parameters {[}21{]}.
 We provide further discussion of our approach to interpretation of
 statistical evidence in the Supplementary Information.
 
-\subsection{Bayesian framework for predictions and incorporating
+\subsubsection{Bayesian framework for predictions and incorporating
 information from
 observations}\label{bayesian-framework-for-predictions-and-incorporating-information-from-observations}
 
@@ -520,7 +519,7 @@ where we used the conditional probability closure assumption
 This closure assumption can be interpreted as maintaining our same
 mechanistic model despite new observations.
 
-\subsection{Measurement model}\label{measurement-model}
+\subsubsection{Measurement model}\label{measurement-model}
 
 The measurement model \(p(\mathbf{y}|\mathbf{L},\mathbf{n})\) component
 was taken to be a binomial distribution \(\mathcal{B}\) of the form
@@ -553,16 +552,16 @@ but slightly non-standard) notation
 where the standard deviations are given by
 \(\sigma_s = \sqrt{\frac{L_s(1-L_s)}{n_s}}\).
 
-\subsection{Process models}\label{process-models}
+\subsubsection{Process models: Spatially discrete model}\label{process-models-discrete}
 
 We developed our process model at different levels of resolution. First,
 we considered a spatially discrete probabilistic model at the level of
 our measurement grid defined above. Second, we considered two spatially
 continuous approximations: one model excluding explicit cell-scale
-effects and one including them.
+effects and one including them. Here we first consider the discrete model.
 
-\subsubsection{Spatially discrete process
-model}\label{spatially-discrete-process-model}
+%\subsubsection{Spatially discrete process
+%model}\label{spatially-discrete-process-model}
 
 Our basic `process' model described the evolution of the occupancy
 probabilities (population labelled fractions) at the scale of the
@@ -603,7 +602,7 @@ division event at site \(j < i\). Partitioning on the events
 
 \begin{equation}p(l_i(t+\Delta t)=1) - p(l_i(t)=1) = \Delta t\sum_{j=0}^{i-1}k_j\left[p(l_{i-1}(t)=1)-p(l_i(t)=1)\right]. \label{eq:label-master-discrete-cons}\end{equation}
 
-\subsubsection{Underlying continuous model - zeroth-order
+\subsubsection{Process models: underlying continuous model and zeroth-order
 approximation}\label{underlying-continuous-model---zeroth-order-approximation}
 
 To aid model interpretation and model cross comparisons we derived a
@@ -626,8 +625,8 @@ with
 
 where \(k(x)\) denotes the (net) proliferation rate.
 
-\subsubsection{Underlying continuous model - higher-order spatial
-effects}\label{underlying-continuous-model---higher-order-spatial-effects}
+\subsubsection{Process models: underlying continuous model and higher-order
+spatial effects}\label{underlying-continuous-model---higher-order-spatial-effects}
 
 Our `zeroth-order' continuous approximation above was obtained by
 neglecting all higher-order terms in \(\Delta x\). We anticipate that a
@@ -646,7 +645,7 @@ our original `zeroth-order' (advection) model against our data, and also
 examined the extent to which higher-order spatial terms such as those
 considered above could account for any misfits.
 
-\subsection{Definition of priors}\label{definition-of-priors}
+\subsubsection{Definition of priors}\label{definition-of-priors}
 
 Since we adopted a Bayesian perspective in this work we required a
 parameter prior model that could express additional modelling
@@ -707,7 +706,7 @@ parameters/matrices separately ({[}21{]} discusses this visualisation
 approach to priors in more detail). These are hence discussed and
 displayed in more detail in the Results section below.
 
-\subsection{Computational methods}\label{computational-methods}
+%\subsubsection{Computational methods}\label{computational-methods}
 
 \subsubsection{Implementation of MCMC sampling and Bayesian
 updating}\label{implementation-of-mcmc-sampling-and-bayesian-updating}
@@ -723,7 +722,7 @@ the measurements \(\mathbf{y}\) via the latent vector \(\mathbf{L}\);
 since this step is deterministic, however, no additional sampling steps
 were required for the process model component.
 
-\subsubsection{Differential equations}\label{differential-equations}
+\subsubsection{Solution of differential equations}\label{differential-equations}
 
 For the results in all sections other than the final results section in
 which we include higher-order spatial effects, we solved the
@@ -780,7 +779,7 @@ parameter regions post-crypt end, and a parameter correlation length of
 typically a non-zero parameter correlation length and a shut-off in
 proliferation after the crypt end produce more stable (well-identified)
 estimates. Additional visualisations of the parameter inferences are
-provided in Supplementary Figures 1-3.
+provided in Fig A-C in S1 Supplementary information.
 
 \begin{figure}
 \centering
@@ -993,8 +992,7 @@ The two times considered here, 1620 min and 2520 min, correspond to 10 h
 and 25 h post Ara-C treatment, respectively, i.e to the end of the
 effect and after the resumption of proliferation.
 
-Again, as expected, the label has resumed movement in concert with the
-resumption in proliferation. The model appears to fit reasonably well.
+As can be seen in Fig \ref{fig:AraC-recovery-posterior-label-all}, and as expected, the label has resumed movement in concert with the resumption in proliferation. The model appears to fit reasonably well.
 
 \begin{figure}
 \centering
@@ -1226,9 +1224,7 @@ In summary, the main results established using the above approach were
 
 \section{Acknowledgements}\label{acknowledgements}
 
-This work was funded by the BBSRC-UK, project numbers BB/K018256/1,
-BB/K017578/1, BB/K017144/1 and BB/J004529/1 and the EPSRC-UK, project
-number EP/I017909/1.
+We thank the anonymous referees for valuable and constructive comments. OJM would like to thank the members of the Wolfson Centre of Mathematical Biology for useful discussion and feedback, in particular Ruth Baker for her helpful comments on stochastic modelling.
 
 \nolinenumbers
 
@@ -1573,6 +1569,16 @@ network evolution. Proc Natl Acad Sci U S A 106:10576--10581
 Location-Scale, analysis of variance, nonparametric regression and image
 analysis. CRC Press
 
+\section{Supporting Information Legends}
+
+
+\textbf{S1 Fig A. Posterior for proliferation rates under baseline, healthy conditions.} The upper diagonal represents the marginal distributions for each proliferation rate when averaging over all other profileration rates. The plots below the diagonal show bivariate marginal distributions illustrating pairwise associations after averaging over all other profileration rates. These visualisations are a way of understanding the full joint posterior distribution which is five-dimensional in full generality.
+
+\textbf{S1 Fig B. Posterior for proliferation rates under Ara-C treatment.} The upper diagonal represents the marginal distributions for each proliferation rate when averaging over all other profileration rates. The plots below the diagonal show bivariate marginal distributions illustrating pairwise associations after averaging over all other profileration rates. These visualisations are a way of understanding the full joint posterior distribution which is five-dimensional in full generality.
+
+\textbf{S1 Fig C. Posterior for proliferation rates when recovering from Ara-C treatment.} The upper diagonal represents the marginal distributions for each proliferation rate when averaging over all other profileration rates. The plots below the diagonal show bivariate marginal distributions illustrating pairwise associations after averaging over all other profileration rates. These visualisations are a way of understanding the full joint posterior distribution which is five-dimensional in full generality.
+
+\textbf{S1 Fig D. Typical section obtained during the experimental procedures described in the main manuscript}. These are also more fully in the companion paper {[}18{]}.
 
 
 \end{document}

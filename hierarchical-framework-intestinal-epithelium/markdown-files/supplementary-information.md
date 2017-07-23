@@ -1,5 +1,7 @@
 ---
 header-includes:
+- \usepackage[labelformat=empty]{caption}
+
 bibliography: "../bibtex-files/crypt-villus-refs.bib"
 csl: "../csl/springer-vancouver.csl"
 
@@ -44,18 +46,18 @@ $$v(x) = \int_0^{x} k(x') dx'.$$
 When we incorporated cell death, with discrete rates $d_i$, this led to the same equations with $k$ replaced by $k-d$, where $d(x,t)$ was defined similarly to $k(x,t)$. Hence we interpreted $k$ in the above as the net cell production rate (which hence could be negative).
 
 ## Supplementary visualisations of posterior distributions
-In Fig @fig:BrdU-corner, Fig @fig:AraC-active-corner and Fig @fig:AraC-passive-corner, respectively, we present alternative visualisations of the posterior distributions for proliferation rates under healthy, Ara-C-treated and recovering conditions. These are alternative visualisations of the data presented in Figs 3-5 in the main manuscript. These plots were produced using the package ‘corner.py’ described in [@Foreman-Mackey2016-cj].
+In Fig A, Fig B and Fig C, respectively, we present alternative visualisations of the posterior distributions for proliferation rates under healthy, Ara-C-treated and recovering conditions. These are alternative visualisations of the data presented in Figs 3-5 in the main manuscript. These plots were produced using the package ‘corner.py’ described in [@Foreman-Mackey2016-cj].
 
-![Posterior for proliferation rates under baseline, healthy conditions. The upper diagonal represents the marginal distributions for each proliferation rate when averaging over all other profileration rates. The plots below the diagonal show bivariate marginal distributions illustrating pairwise associations after averaging over all other profileration rates. These visualisations are a way of understanding the full joint posterior distribution which is five-dimensional in full generality.](../figures/figures_to_include/Fig12.pdf){#fig:BrdU-corner}
+![\textbf{Fig A. Posterior for proliferation rates under baseline, healthy conditions.} The upper diagonal represents the marginal distributions for each proliferation rate when averaging over all other profileration rates. The plots below the diagonal show bivariate marginal distributions illustrating pairwise associations after averaging over all other profileration rates. These visualisations are a way of understanding the full joint posterior distribution which is five-dimensional in full generality.](../figures/figures_to_include/S1_Fig_A.pdf)
 
-![Posterior for proliferation rates under Ara-C treatment. The upper diagonal represents the marginal distributions for each proliferation rate when averaging over all other profileration rates. The plots below the diagonal show bivariate marginal distributions illustrating pairwise associations after averaging over all other profileration rates. These visualisations are a way of understanding the full joint posterior distribution which is five-dimensional in full generality.](../figures/figures_to_include/Fig13.pdf){#fig:AraC-active-corner}
+![\textbf{Fig B. Posterior for proliferation rates under Ara-C treatment.} The upper diagonal represents the marginal distributions for each proliferation rate when averaging over all other profileration rates. The plots below the diagonal show bivariate marginal distributions illustrating pairwise associations after averaging over all other profileration rates. These visualisations are a way of understanding the full joint posterior distribution which is five-dimensional in full generality.](../figures/figures_to_include/S1_Fig_B.pdf)
 
-![Posterior for proliferation rates when recovering from Ara-C treatment. The upper diagonal represents the marginal distributions for each proliferation rate when averaging over all other profileration rates. The plots below the diagonal show bivariate marginal distributions illustrating pairwise associations after averaging over all other profileration rates. These visualisations are a way of understanding the full joint posterior distribution which is five-dimensional in full generality.](../figures/figures_to_include/Fig14.pdf){#fig:AraC-passive-corner}
+![\textbf{Fig C. Posterior for proliferation rates when recovering from Ara-C treatment.} The upper diagonal represents the marginal distributions for each proliferation rate when averaging over all other profileration rates. The plots below the diagonal show bivariate marginal distributions illustrating pairwise associations after averaging over all other profileration rates. These visualisations are a way of understanding the full joint posterior distribution which is five-dimensional in full generality.](../figures/figures_to_include/S1_Fig_C.pdf)
 
 ## Typical sample from intestinal epithelium
-The companion paper [@Parker2016-jf] contains full details of the experimental procedures. In Fig @fig:section below we reproduce, for reference, a typical section obtained from an intestinal in these experiments. 
+The companion paper [@Parker2016-jf] contains full details of the experimental procedures. In Fig D below we reproduce, for reference, a typical section obtained from an intestinal in these experiments. 
 
-![Typical section obtained during the experimental procedures described in the main manuscript and more fully in the companion paper [@Parker2016-jf].](../figures/figures_to_include/Fig15.tif){#fig:section}
+![\textbf{Fig D. Typical section obtained during the experimental procedures described in the main manuscript}. These are also detailed more fully in the companion paper [@Parker2016-jf].](../figures/figures_to_include/S1_Fig_D.tif)
 
 ## Interpretation of statistical evidence
 We have described above how mechanistic or causal assumptions relate to assumptions of structural invariance under different scenarios. In order to interpret the results that follow, however, we also required an interpretation of the 'statistical evidence' that a set of measurements provided about parameter values within a fixed model structure. This proved a surprisingly controversial topic and we encountered continuing debate about fundamental principles and definitions of statistical evidence [@Royall1997-ai; @Mayo2014-pz; @Evans2014-gn; @Evans2015-kg; @Taper2016-la]. 
