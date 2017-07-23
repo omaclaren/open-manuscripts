@@ -11,6 +11,8 @@ pandoc --filter pandoc-fignos --filter pandoc-eqnos --filter pandoc-citeproc --d
 #requires latexdiff.
 latexdiff  -t CFONT orig.tex revised.tex > diff.tex
 
+latexdiff  -t CFONT revised.tex revised.tex > diff.tex
+
 xelatex revised.tex -o revised.pdf
 xelatex revised.tex -o revised.pdf
 xelatex revised.tex -o revised.pdf
