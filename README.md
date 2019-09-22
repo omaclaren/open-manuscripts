@@ -7,3 +7,5 @@ This is now a repo only for:
 The full manuscript, author information and copyright information can found here: http://biorxiv.org/content/early/2016/10/25/072561. (The copyright holder for this preprint is the author/funder. It is made available under a CC-BY-NC-ND 4.0 International license.)
 
 Preserving this link so it still works. From now on I'll try to give each open manuscript its own repo.
+
+This article also now has its own (duplicate) repo at: https://github.com/omaclaren/hierarchical-framework-intestinal-epithelium
